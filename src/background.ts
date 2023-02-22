@@ -139,9 +139,11 @@ if (gotTheLock) {
       }
     });
 
-    mainWindow.webContents.on("new-window", (e, url) => {
-      e.preventDefault();
-      shell.openExternal(url);
+    mainWindow.webContents.setWindowOpenHandler((details) => {
+      if (details.url.indexOf('http') === 0) {
+        shell.openExternal(details.url);
+      }
+      return { action: 'deny' }
     });
 
     mainWindow.webContents.on("context-menu", popupContextMenu);

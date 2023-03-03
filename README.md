@@ -21,10 +21,6 @@ Download your build from the [releases](https://github.com/LanikSJ/android-messa
 
 `brew install --cask laniksj/android-messages-plus`
 
-# Install on Windows via Scoop
-
-`scoop bucket add extras && scoop install android-messages`
-
 # Contributions
 
 The code is pretty ugly but getting better every day. Feel free to take a look.

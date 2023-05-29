@@ -34,7 +34,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@types/node": "20.2.4",
+    "@types/node": "20.2.5",
     "@types/uuid": "^9.0.1",
     "@types/webpack": "^5.28.1",
     "@types/webpack-node-externals": "^3.0.0",

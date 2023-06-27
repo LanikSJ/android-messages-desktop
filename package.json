@@ -39,7 +39,7 @@
     "@types/webpack": "^5.28.1",
     "@types/webpack-node-externals": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
-    "@typescript-eslint/parser": "^5.60.0",
+    "@typescript-eslint/parser": "^5.60.1",
     "cross-env": "^7.0.2",
     "electron": "25.2.0",
     "electron-builder": "^24.4.0",

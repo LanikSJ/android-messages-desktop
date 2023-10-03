@@ -19,7 +19,7 @@ Download your build from the [releases](https://github.com/LanikSJ/android-messa
 
 # Install on MacOS via Homebrew
 
-`brew install --cask laniksj/android-messages-plus`
+`brew install --cask laniksj/tap/android-messages-plus`
 
 # Contributions
 

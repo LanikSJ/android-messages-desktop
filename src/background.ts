@@ -89,24 +89,12 @@ if (gotTheLock) {
     }
 
     // Fix the user agent -- Google sends auth requests to YouTube as well, for some reason
-    // Fix the user agent -- Google sends auth requests to YouTube as well, for some reason
     mainWindow.webContents.session.webRequest.onBeforeSendHeaders(
       {
-        urls: ["https://*.google.com/*", "https://*.youtube.com/*"],
         urls: ["https://*.google.com/*", "https://*.youtube.com/*"],
       },
       ({ requestHeaders }, callback) =>
         callback({
-          requestHeaders: {
-            ...requestHeaders,
-            // Specifically, we are ONLY removing the Electron portion of the agent
-            // Found via https://old.reddit.com/r/electronjs/comments/eiy2sf/google_blocking_log_in_from_electron_apps/fcvuwd9/
-            // Referenced at this link https://github.com/firebase/firebase-js-sdk/issues/2478#issuecomment-571773318
-            "User-Agent": mainWindow.webContents.userAgent.replace(
-              "Electron/" + process.versions.electron,
-              ""
-            ),
-          },
           requestHeaders: {
             ...requestHeaders,
             // Specifically, we are ONLY removing the Electron portion of the agent
@@ -156,10 +144,8 @@ if (gotTheLock) {
     });
 
     mainWindow.webContents.setWindowOpenHandler((details) => {
-      if (details.url.indexOf('http') === 0) {
-        shell.openExternal(details.url);
-      }
-      return { action: "deny" };
+      shell.openExternal(details.url)
+      return {action: "deny"}
     });
 
 

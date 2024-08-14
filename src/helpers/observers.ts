@@ -42,9 +42,12 @@ export function recentThreadObserver() {
 
     const image = canvas?.toDataURL();
 
-    const recentMessage = conversation.querySelector(
-      "a div.text-content div.snippet-text mws-conversation-snippet span"
-    )?.textContent;
+    const recentMessage =
+      conversation
+        .querySelector(
+          "a div.text-content div.snippet-text mws-conversation-snippet span"
+        )
+        ?.textContent?.slice(0, 20) + "...";
 
     const focusFunction = () => void conversation.querySelector("a")?.click();
     focusFunctions[i] = focusFunction;

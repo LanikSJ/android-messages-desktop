@@ -1,4 +1,4 @@
-# Android Messages™ Desktop ![master status](https://github.com/LanikSJ/android-messages-desktop/actions/workflows/master.yml/badge.svg)
+# Android Messages™ Desktop ![main status](https://github.com/LanikSJ/android-messages-desktop/actions/workflows/main.yml/badge.svg)
 
 Run Android Messages as a desktop app, a la iMessage. For those of us that prefer not to have a browser tab always open for this sort of thing.
 

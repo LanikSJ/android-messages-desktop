@@ -24,8 +24,7 @@ const base: Configuration = {
   resolve: {
     extensions: [".ts", ".js"],
   },
-  watch: false
-};
+  watch: false,};
 
 const main = merge(base, {
   name: "background",

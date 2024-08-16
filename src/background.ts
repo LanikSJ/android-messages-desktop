@@ -144,8 +144,8 @@ if (gotTheLock) {
     });
 
     mainWindow.webContents.setWindowOpenHandler((details) => {
-      shell.openExternal(details.url)
-      return {action: "deny"}
+      shell.openExternal(details.url);
+      return { action: "deny" };
     });
 
 
@@ -171,7 +171,7 @@ if (gotTheLock) {
         ],
       },
       (details, callback) => {
-        let path = details.url.replace("file://www.google.com/js/bg", "");
+        const path = details.url.replace("file://www.google.com/js/bg", "");
         callback({ redirectURL: "https://www.google.com/js/bg" + path });
       }
     );
@@ -182,7 +182,7 @@ if (gotTheLock) {
         ],
       },
       (details, callback) => {
-        let path = details.url.replace("file:///web/", "")
+        let path = details.url.replace("file:///web/", "");
         callback({ redirectURL: "https://www.google.com/js/bg" + path });
       }
     );

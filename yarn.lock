@@ -704,7 +704,7 @@ acorn-walk@^8.1.1:
   dependencies:
     acorn "^8.11.0"
 
-acorn@^8.11.0, acorn@^8.14.0, acorn@^8.4.1, acorn@^8.8.2:
+acorn@^8.11.0, acorn@^8.12.0, acorn@^8.14.0, acorn@^8.4.1, acorn@^8.8.2:
   version "8.14.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.14.0.tgz#063e2c70cac5fb4f6467f0b11152e04c682795b0"
   integrity sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==
@@ -925,14 +925,6 @@ builder-util-runtime@9.2.4:
   version "9.2.4"
   resolved "https://registry.yarnpkg.com/builder-util-runtime/-/builder-util-runtime-9.2.4.tgz#13cd1763da621e53458739a1e63f7fcba673c42a"
   integrity sha512-upp+biKpN/XZMLim7aguUyW8s0FUpDvOtK6sbanMFDAMBzpHDqdhgVYm6zc9HJ6nWo7u2Lxk60i2M6Jd3aiNrA==
-  dependencies:
-    debug "^4.3.4"
-    sax "^1.2.4"
-
-builder-util-runtime@9.2.5:
-  version "9.2.5"
-  resolved "https://registry.yarnpkg.com/builder-util-runtime/-/builder-util-runtime-9.2.5.tgz#0afdffa0adb5c84c14926c7dd2cf3c6e96e9be83"
-  integrity sha512-HjIDfhvqx/8B3TDN4GbABQcgpewTU4LMRTQPkVpKYV3lsuxEJoIfvg09GyWTNmfVNSUAYf+fbTN//JX4TH20pg==
   dependencies:
     debug "^4.3.4"
     sax "^1.2.4"
@@ -3125,8 +3117,9 @@ webpack@^5, webpack@^5.94.0:
     "@webassemblyjs/ast" "^1.12.1"
     "@webassemblyjs/wasm-edit" "^1.12.1"
     "@webassemblyjs/wasm-parser" "^1.12.1"
-    acorn "^8.14.0"
-    browserslist "^4.24.0"
+    acorn "^8.7.1"
+    acorn-import-attributes "^1.9.5"
+    browserslist "^4.21.10"
     chrome-trace-event "^1.0.2"
     enhanced-resolve "^5.17.1"
     es-module-lexer "^1.2.1"

@@ -15,6 +15,9 @@ export const appMenuTemplate: MenuItemConstructorOptions = {
     checkForUpdatesMenuItem,
     installUpdatesMenuItem,
     separator,
+    {
+      role: "close",
+    },
     settingsMenu,
     separator,
     {

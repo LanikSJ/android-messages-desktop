@@ -148,7 +148,6 @@ if (gotTheLock) {
       return { action: "deny" };
     });
 
-
     mainWindow.webContents.on("context-menu", popupContextMenu);
 
     // block Google collecting data

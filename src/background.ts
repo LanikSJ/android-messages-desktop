@@ -1,4 +1,4 @@
-import { app, Event as ElectronEvent, ipcMain, shell } from "electron";
+import { app, Event as ElectronEvent, ipcMain, ipcRenderer, shell } from "electron";
 import { BrowserWindow } from "electron/main";
 import path from "path";
 import process from "process";
@@ -8,6 +8,7 @@ import { MenuManager } from "./helpers/menuManager";
 import { setSettingsFlushEnabled, settings } from "./helpers/settings";
 import { Conversation, TrayManager } from "./helpers/trayManager";
 import { popupContextMenu } from "./menu/contextMenu";
+import fs from "fs";
 
 const {
   autoHideMenuEnabled,
@@ -214,4 +215,9 @@ if (gotTheLock) {
   ipcMain.on("set-recent-conversations", (_event, data: Conversation[]) => {
     trayManager.setRecentConversations(data);
   });
+
+  ipcMain.handle("get-icon", () => {
+    var bitmap = fs.readFileSync(path.resolve(RESOURCES_PATH, "icons", "64x64.png"));
+    return Buffer.from(bitmap).toString('base64');
+  })
 }

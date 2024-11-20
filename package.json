@@ -1,7 +1,7 @@
 {
   "name": "android-messages-desktop",
   "description": "Messages for web, as a desktop app",
-  "version": "5.5.0",
+  "version": "5.6.0",
   "author": {
     "name": "Kyle Rosenberg",
     "email": "kyle@ekrosenberg.com"
@@ -36,12 +36,12 @@
   "devDependencies": {
     "@eslint/js": "^9.15.0",
     "@types/eslint__js": "^8.42.3",
-    "@types/node": "22.9.0",
+    "@types/node": "22.9.1",
     "@types/uuid": "^10.0.0",
     "@types/webpack": "^5.28.0",
     "@types/webpack-node-externals": "^3.0.4",
-    "@typescript-eslint/eslint-plugin": "^8.14.0",
-    "@typescript-eslint/parser": "^8.14.0",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
     "cross-env": "^7.0.2",
     "electron": "^33.2.0",
     "electron-builder": "^25.1.8",

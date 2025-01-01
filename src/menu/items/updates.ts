@@ -7,7 +7,7 @@ export const checkForUpdatesMenuItem: MenuItemConstructorOptions = {
   label: "Check for Updates",
   click: () => {
     if (!IS_DEV) {
-      checkForUpdate(true);
+      void checkForUpdate(true);
     }
   },
 };

@@ -17,7 +17,7 @@ type validJson = primative | jsonArr | json;
 export type Setting<T extends validJson> = BehaviorSubject<T>;
 
 function getSetting(key: string): validJson | undefined {
-  return (jetpack.read(SETTINGS_FILE(), "json") || {})[key];
+  return jetpack.read(SETTINGS_FILE(), "json")?.[key];
 }
 
 /**
@@ -29,7 +29,7 @@ function getSetting(key: string): validJson | undefined {
  */
 function createSetting<T>(key: string, initial: T): BehaviorSubject<T> {
   const savedVal = getSetting(key);
-  const val = savedVal != null ? savedVal : initial;
+  const val = savedVal ?? initial;
   return new BehaviorSubject(val) as BehaviorSubject<T>;
 }
 
@@ -54,12 +54,12 @@ export type Settings = {
   [P in keyof JsonSettings]: Setting<JsonSettings[P]>;
 };
 
-type WindowSize = {
+interface WindowSize {
   width: number;
   height: number;
 };
 
-type WindowPosition = {
+interface WindowPosition {
   x: number;
   y: number;
 };

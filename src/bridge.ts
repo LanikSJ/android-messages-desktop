@@ -13,7 +13,7 @@ import {
 
 declare global {
   interface Window {
-    interop: unknown;
+    interop: any;
   }
 }
 

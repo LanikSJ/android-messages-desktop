@@ -57,7 +57,7 @@ if (gotTheLock) {
     new MenuManager();
 
     if (checkForUpdateOnLaunchEnabled.value && !IS_DEV) {
-      void checkForUpdate(true);
+      checkForUpdate(true);
     }
 
     const { width, height } = savedWindowSize.value;
@@ -112,7 +112,7 @@ if (gotTheLock) {
 
     trayManager.startIfEnabled();
     settings.showIconsInRecentConversationTrayEnabled.subscribe(() =>
-      { trayManager.refreshTrayMenu(); }
+      trayManager.refreshTrayMenu()
     );
 
     let quitViaContext = false;

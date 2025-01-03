@@ -100,5 +100,6 @@ export const settingsMenu: MenuItemConstructorOptions = {
       type: "checkbox",
       checked: checkForUpdateOnLaunchEnabled.value,
       click: (item) => checkForUpdateOnLaunchEnabled.next(item.checked),
+    },
   ],
 };

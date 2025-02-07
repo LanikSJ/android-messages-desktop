@@ -13,23 +13,23 @@ Inspired by:
 
 **Important Note 2:** Neither the MacOS nor the Windows binaries are signed right now. I am willing to add this but I do not have the certificates required at this time.
 
-# Install Anywhere
+## Install Anywhere
 
 Download your build from the [releases](https://github.com/LanikSJ/android-messages-desktop/releases/latest) page.
 
-# Install on Archlinux via AUR
+## Install on Archlinux via AUR
 
 `yay -S android-messages-desktop-bin` or the relevant command in your aur helper.
 
-# Install on MacOS via Homebrew
+## Install on MacOS via Homebrew
 
 `brew install laniksj/tap/android-messages-plus`
 
-# Install on Windows via Scoop
+## Install on Windows via Scoop
 
 `scoop bucket add extras && scoop install android-messages`
 
-# Contributions
+## Contributions
 
 The code is pretty ugly but getting better every day. Feel free to take a look.
 

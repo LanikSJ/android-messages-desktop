@@ -49,7 +49,7 @@
     "eslint-config-prettier": "^10.0.2",
     "eslint-plugin-prettier": "^5.2.3",
     "png2icons": "^2.0.1",
-    "prettier": "^3.5.2",
+    "prettier": "^3.5.3",
     "source-map-support": "^0.5.21",
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.1",

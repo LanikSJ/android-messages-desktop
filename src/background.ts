@@ -1,4 +1,10 @@
-import { app, Event as ElectronEvent, ipcMain, ipcRenderer, shell } from "electron";
+import {
+  app,
+  Event as ElectronEvent,
+  ipcMain,
+  ipcRenderer,
+  shell,
+} from "electron";
 import { BrowserWindow } from "electron/main";
 import path from "path";
 import process from "process";
@@ -40,7 +46,7 @@ if (IS_MAC) {
   app.on("activate", () => {
     if (mainWindow) {
       mainWindow.show();
-      app.dock.setBadge("");
+      app.dock?.setBadge("");
     }
   });
 }
@@ -57,7 +63,7 @@ if (gotTheLock) {
     new MenuManager();
 
     if (checkForUpdateOnLaunchEnabled.value && !IS_DEV) {
-      checkForUpdate(true);
+      checkForUpdate(true, false);
     }
 
     const { width, height } = savedWindowSize.value;
@@ -101,10 +107,12 @@ if (gotTheLock) {
             // Specifically, we are ONLY removing the Electron portion of the agent
             // Found via https://old.reddit.com/r/electronjs/comments/eiy2sf/google_blocking_log_in_from_electron_apps/fcvuwd9/
             // Referenced at this link https://github.com/firebase/firebase-js-sdk/issues/2478#issuecomment-571773318
-            "User-Agent": mainWindow.webContents.userAgent.replace(
-              "Electron/" + process.versions.electron,
-              ""
-            ),
+            // "User-Agent": mainWindow.webContents.userAgent.replace(
+            //   "Electron/" + process.versions.electron,
+            //   ""
+            // ),
+            "User-Agent":
+              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/2000.36 (KHTML, like Gecko) Chrome/2000.0.0.0 Safari/2000.36",
           },
         })
     );
@@ -139,6 +147,9 @@ if (gotTheLock) {
         event.preventDefault();
         mainWindow.hide();
         trayManager?.showMinimizeToTrayWarning();
+        if (IS_MAC) {
+          app.dock?.hide();
+        }
       } else {
         app.quit(); // If we don't explicitly call this, the webview and mainWindow get destroyed but background process still runs.
       }
@@ -195,7 +206,7 @@ if (gotTheLock) {
   ipcMain.on("show-main-window", () => {
     mainWindow.show();
     if (IS_MAC) {
-      app.dock.setBadge("");
+      app.dock?.setBadge("");
     }
   });
 
@@ -203,7 +214,7 @@ if (gotTheLock) {
     if (!mainWindow.isFocused() && taskbarFlashEnabled.value) {
       mainWindow.flashFrame(true);
       if (IS_MAC) {
-        app.dock.setBadge("•");
+        app.dock?.setBadge("•");
       }
     }
   });
@@ -217,7 +228,9 @@ if (gotTheLock) {
   });
 
   ipcMain.handle("get-icon", () => {
-    var bitmap = fs.readFileSync(path.resolve(RESOURCES_PATH, "icons", "64x64.png"));
-    return Buffer.from(bitmap).toString('base64');
-  })
+    const bitmap = fs.readFileSync(
+      path.resolve(RESOURCES_PATH, "icons", "64x64.png")
+    );
+    return Buffer.from(bitmap).toString("base64");
+  });
 }

@@ -63,8 +63,7 @@ if (gotTheLock) {
     new MenuManager();
 
     if (checkForUpdateOnLaunchEnabled.value && !IS_DEV) {
-      checkForUpdate(true, false);
-    }
+      void checkForUpdate(true, false);    }
 
     const { width, height } = savedWindowSize.value;
     const { x, y } = savedWindowPosition.value ?? {};

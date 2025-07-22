@@ -3,6 +3,9 @@
 
 name: pull request
 
+permissions:
+  contents: read
+
 on:
   pull_request:
     types: [opened, synchronize, reopened, edited]

@@ -7,14 +7,14 @@
     "email": "25403517+OrangeDrangon@users.noreply.github.com"
   },
   "license": "MIT",
-  "copyright": "Copyright 2020 Kyle Rosenberg",
-  "homepage": "https://github.com/OrangeDrangon/android-messages-desktop",
+  "copyright": "Copyright 2025 Kyle Rosenberg",
+  "homepage": "https://github.com/LanikSJ/android-messages-desktop",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OrangeDrangon/android-messages-desktop.git"
+    "url": "git+https://github.com/LanikSJ/android-messages-desktop.git"
   },
   "bugs": {
-    "url": "https://github.com/OrangeDrangon/android-messages-desktop/issues"
+    "url": "https://github.com/LanikSJ/android-messages-desktop/issues"
   },
   "main": "app/background.js",
   "scripts": {
@@ -42,6 +42,7 @@
     "@typescript-eslint/eslint-plugin": "^8.37.0",
     "@typescript-eslint/parser": "^8.37.0",
     "cross-env": "^7.0.2",
+    "electron": "^37.2.3",
     "electron": "^37.2.3",
     "electron-builder": "^26.0.12",
     "eslint": "^9.31.0",

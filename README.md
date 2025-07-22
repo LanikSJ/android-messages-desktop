@@ -30,6 +30,7 @@ Download your build from the [releases](https://github.com/LanikSJ/android-messa
 ## 🐧 Install on Archlinux via AUR
 
 `paru -S android-messages-desktop-bin` or the relevant command in your aur helper.
+`paru -S android-messages-desktop-bin` or the relevant command in your aur helper.
 
 ## 🍏 Install on MacOS via Homebrew
 

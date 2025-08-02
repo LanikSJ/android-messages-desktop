@@ -6,7 +6,6 @@ on:
   push:
     branches: ["main"]
     paths:
-      - _includes/**
       - README.md
       - _config.yml
 

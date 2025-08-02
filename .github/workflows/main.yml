@@ -12,7 +12,7 @@ on:
     branches: [main]
     paths:
       - .github/workflows/main.yml
-      - src/*
+      - src/**
       - electron-builder.js
       - package.json
       - tsconfig.json

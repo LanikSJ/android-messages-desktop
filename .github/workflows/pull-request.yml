@@ -11,7 +11,7 @@ on:
     types: [opened, synchronize, reopened, edited]
     paths:
       - .github/workflows/pull-request.yml
-      - src/*
+      - src/**
       - electron-builder.js
       - package.json
       - tsconfig.json

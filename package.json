@@ -34,7 +34,7 @@
     "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.32.0",
+    "@eslint/js": "^9.35.0",
     "@types/node": "24.3.1",
     "@types/uuid": "^10.0.0",
     "@types/webpack": "^5.28.0",

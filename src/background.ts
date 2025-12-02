@@ -57,7 +57,7 @@ if (gotTheLock) {
     new MenuManager();
 
     if (checkForUpdateOnLaunchEnabled.value && !IS_DEV) {
-      checkForUpdate(true, false);
+      void checkForUpdate(true, false);
     }
 
     const { width, height } = savedWindowSize.value;
@@ -114,7 +114,7 @@ if (gotTheLock) {
 
     trayManager.startIfEnabled();
     settings.showIconsInRecentConversationTrayEnabled.subscribe(() =>
-      trayManager.refreshTrayMenu()
+      { trayManager.refreshTrayMenu(); }
     );
 
     let quitViaContext = false;
@@ -140,7 +140,7 @@ if (gotTheLock) {
       if (!shouldExitOnMainWindowClosed()) {
         event.preventDefault();
         mainWindow.hide();
-        trayManager?.showMinimizeToTrayWarning();
+        trayManager.showMinimizeToTrayWarning();
         if (IS_MAC) {
           app.dock?.hide();
         }

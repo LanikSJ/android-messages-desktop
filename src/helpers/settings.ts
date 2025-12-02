@@ -11,8 +11,18 @@ interface json {
   [key: string]: json | primative | jsonArr;
 }
 
+interface WindowSize extends json {
+  width: number;
+  height: number;
+}
+
+interface WindowPosition extends json {
+  x: number;
+  y: number;
+}
+
 // a complete expression of json including root arrays, primatives, and objects
-type validJson = primative | jsonArr | json;
+type validJson = primative | jsonArr | json | WindowSize | WindowPosition | null;
 
 export type Setting<T extends validJson> = BehaviorSubject<T>;
 
@@ -52,16 +62,6 @@ export interface JsonSettings {
 // wraps json settings in the setting type for export
 export type Settings = {
   [P in keyof JsonSettings]: Setting<JsonSettings[P]>;
-};
-
-interface WindowSize {
-  width: number;
-  height: number;
-};
-
-interface WindowPosition {
-  x: number;
-  y: number;
 };
 
 // default settings for the app

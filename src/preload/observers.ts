@@ -48,7 +48,10 @@ export function recentThreadObserver() {
         )
         ?.textContent?.slice(0, 20) + "...";
 
-    const focusFunction = () => conversation.querySelector("a")?.click();
+    const focusFunction = (): undefined => {
+      const element = conversation.querySelector("a");
+      if (element) element.click();
+    };
     focusFunctions[i] = focusFunction;
 
     return { name, image, recentMessage, i };

@@ -22,7 +22,13 @@ interface WindowPosition extends json {
 }
 
 // a complete expression of json including root arrays, primatives, and objects
-type validJson = primative | jsonArr | json | WindowSize | WindowPosition | null;
+type validJson =
+  | primative
+  | jsonArr
+  | json
+  | WindowSize
+  | WindowPosition
+  | null;
 
 export type Setting<T extends validJson> = BehaviorSubject<T>;
 

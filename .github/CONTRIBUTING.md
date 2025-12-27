@@ -39,7 +39,8 @@ with as much detail as possible, such as:
 
 Before opening an issue, please ensure:
 
-1. **You're using the latest version** - Check the [releases page](https://github.com/LanikSJ/android-messages-desktop/releases/latest) for the newest build
+1. **You're using the latest version** - Check the [releases page](https://github.com/LanikSJ/android-messages-desktop/releases/latest)
+   for the newest build
 2. **Check for existing issues** - Search the issue tracker to avoid duplicates
 3. **Read the documentation** - Check this file, the README.md, and any other docs
 

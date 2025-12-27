@@ -1,6 +1,7 @@
 # 💬 Android Messages™ Desktop ![main status](https://github.com/LanikSJ/android-messages-desktop/actions/workflows/main.yml/badge.svg)
 
-Run Android Messages as a desktop app, a la iMessage. For those of us that prefer not to have a browser tab always open for this sort of thing.
+Run Android Messages as a desktop app, a la iMessage. For those of us that prefer not to have a browser tab always open
+for this sort of thing.
 
 **Not affiliated with Google in any way. Android is a trademark of Google LLC.**
 
@@ -9,9 +10,11 @@ Inspired by:
 - [Google Play Music Desktop Player](https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-)
 - [a Reddit post on r/Android](https://www.reddit.com/r/Android/comments/8shv6q/web_messages/e106a8r/)
 
-**Important Note 1:** We currently have builds for Windows and macOS, and Linux. I test releases on Arch Linux and to a lesser degree Windows. I would love help testing in additional places.
+**Important Note 1:** We currently have builds for Windows and macOS, and Linux. I test releases on Arch Linux and to a
+lesser degree Windows. I would love help testing in additional places.
 
-**Important Note 2:** Neither the MacOS nor the Windows binaries are signed right now. I am willing to add this but I do not have the certificates required at this time.
+**Important Note 2:** Neither the MacOS nor the Windows binaries are signed right now. I am willing to add this but I do
+not have the certificates required at this time.
 
 ## 📑 Table of Contents
 

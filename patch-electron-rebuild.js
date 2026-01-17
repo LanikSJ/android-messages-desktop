@@ -3,8 +3,24 @@ const path = require("path");
 
 // Possible paths for clang-fetcher.js
 const possiblePaths = [
-  path.join(__dirname, "node_modules", "@electron", "rebuild", "lib", "clang-fetcher.js"),
-  path.join(__dirname, "node_modules", "app-builder-lib", "node_modules", "@electron", "rebuild", "lib", "clang-fetcher.js"),
+  path.join(
+    __dirname,
+    "node_modules",
+    "@electron",
+    "rebuild",
+    "lib",
+    "clang-fetcher.js"
+  ),
+  path.join(
+    __dirname,
+    "node_modules",
+    "app-builder-lib",
+    "node_modules",
+    "@electron",
+    "rebuild",
+    "lib",
+    "clang-fetcher.js"
+  ),
 ];
 
 for (const filePath of possiblePaths) {

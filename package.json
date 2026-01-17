@@ -34,6 +34,9 @@
     "rxjs": "^7.8.2",
     "uuid": "^13.0.0"
   },
+  "resolutions": {
+    "tar": "^7.5.3"
+  },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
     "@types/node": "25.0.9",
@@ -44,7 +47,7 @@
     "@typescript-eslint/parser": "^8.53.0",
     "cross-env": "^10.1.0",
     "electron": "^40.0.0",
-    "electron-builder": "^26.4.0",
+    "electron-builder": "^26.4.1",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",

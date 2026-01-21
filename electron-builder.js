@@ -1,7 +1,7 @@
 export default {
   appId: "pw.kmr.amd",
   artifactName: "${productName}-v${version}-${os}-${arch}.${ext}",
-  productName: "Android Messages",
+  productName: "Android-Messages",
   copyright: "Copyright 2025 Kyle Rosenberg",
   files: ["app/**/*", "resources/**/*"],
   directories: {

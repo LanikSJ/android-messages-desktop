@@ -37,7 +37,7 @@
   },
   "resolutions": {
     "@electron/rebuild": "^4.0.2",
-    "tar": "^7.5.3"
+    "tar": "^7.5.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",

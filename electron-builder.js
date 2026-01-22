@@ -1,10 +1,31 @@
 export default {
   appId: "pw.kmr.amd",
-  artifactName: (context) =>
-    `${context.packager.appInfo.productName.replace(/ /g, "-")}-v${
-      context.packager.appInfo.version
-    }-${context.target.os}-${context.target.arch}.${context.target.ext}`,
+  artifactName: "${productName}-v${version}-${os}-${arch}.${ext}",
   productName: "Android Messages",
+  afterAllArtifactBuild: async (context) => {
+    const fs = require('fs');
+    const path = require('path');
+
+    // Get all artifacts that were built
+    for (const artifact of context.artifacts) {
+      const dir = path.dirname(artifact);
+      const filename = path.basename(artifact);
+
+      // If filename contains spaces, rename it to use dashes
+      if (filename.includes(' ')) {
+        const newFilename = filename.replace(/ /g, '-');
+        const oldPath = artifact;
+        const newPath = path.join(dir, newFilename);
+
+        try {
+          fs.renameSync(oldPath, newPath);
+          console.log(`Renamed: ${filename} -> ${newFilename}`);
+        } catch (error) {
+          console.error(`Failed to rename ${filename}:`, error);
+        }
+      }
+    }
+  },
   copyright: "Copyright 2025 Kyle Rosenberg",
   files: ["app/**/*", "resources/**/*"],
   directories: {
@@ -35,12 +56,7 @@ export default {
     target: { target: "default", arch: "universal" },
   },
   portable: {
-    artifactName: (context) =>
-      `${context.packager.appInfo.productName.replace(/ /g, "-")}-v${
-        context.packager.appInfo.version
-      }-${context.target.os}-${
-        context.target.arch
-      }.portable.${context.target.ext}`,
+    artifactName: "${productName}-v${version}-${os}-${arch}.portable.${ext}",
   },
   nsis: {
     allowToChangeInstallationDirectory: true,

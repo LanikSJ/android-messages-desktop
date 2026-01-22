@@ -1,6 +1,6 @@
 export default {
   appId: "pw.kmr.amd",
-  artifactName: "Android-Messages-v${version}-${os}-${arch}.${ext}",
+  artifactName: (context) => `${context.packager.appInfo.productName.replace(/ /g, '-')}-v${context.packager.appInfo.version}-${context.target.os}-${context.target.arch}.${context.target.ext}`,
   productName: "Android Messages",
   copyright: "Copyright 2025 Kyle Rosenberg",
   files: ["app/**/*", "resources/**/*"],
@@ -32,7 +32,7 @@ export default {
     target: { target: "default", arch: "universal" },
   },
   portable: {
-    artifactName: "Android-Messages-v${version}-${os}-${arch}.portable.${ext}",
+    artifactName: (context) => `${context.packager.appInfo.productName.replace(/ /g, '-')}-v${context.packager.appInfo.version}-${context.target.os}-${context.target.arch}.portable.${context.target.ext}`,
   },
   nsis: {
     allowToChangeInstallationDirectory: true,

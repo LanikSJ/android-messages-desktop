@@ -3,8 +3,8 @@ export default {
   artifactName: "${productName}-v${version}-${os}-${arch}.${ext}",
   productName: "Android Messages",
   afterAllArtifactBuild: async (context) => {
-    const fs = require('fs');
-    const path = require('path');
+    const fs = require("fs");
+    const path = require("path");
 
     // Get all artifacts that were built
     for (const artifact of context.artifacts) {
@@ -12,8 +12,8 @@ export default {
       const filename = path.basename(artifact);
 
       // If filename contains spaces, rename it to use dashes
-      if (filename.includes(' ')) {
-        const newFilename = filename.replace(/ /g, '-');
+      if (filename.includes(" ")) {
+        const newFilename = filename.replace(/ /g, "-");
         const oldPath = artifact;
         const newPath = path.join(dir, newFilename);
 

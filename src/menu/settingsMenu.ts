@@ -30,6 +30,7 @@ export const settingsMenu: MenuItemConstructorOptions = {
       click: (
         item: MenuItem,
         window?: BaseWindow,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         event?: Electron.KeyboardEvent
       ): void => {
         autoHideMenuEnabled.next(item.checked);

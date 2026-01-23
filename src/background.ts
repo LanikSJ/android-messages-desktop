@@ -113,9 +113,9 @@ if (gotTheLock) {
     mainWindow.loadURL("https://messages.google.com/web/");
 
     trayManager.startIfEnabled();
-    settings.showIconsInRecentConversationTrayEnabled.subscribe(() =>
-      { trayManager.refreshTrayMenu(); }
-    );
+    settings.showIconsInRecentConversationTrayEnabled.subscribe(() => {
+      trayManager.refreshTrayMenu();
+    });
 
     let quitViaContext = false;
     app.on("before-quit", () => {
@@ -171,9 +171,7 @@ if (gotTheLock) {
     );
     mainWindow.webContents.session.webRequest.onBeforeRequest(
       {
-        urls: [
-          "file://www.google.com/js/bg*",
-        ],
+        urls: ["file://www.google.com/js/bg*"],
       },
       (details, callback) => {
         const path = details.url.replace("file://www.google.com/js/bg", "");
@@ -182,12 +180,10 @@ if (gotTheLock) {
     );
     mainWindow.webContents.session.webRequest.onBeforeRequest(
       {
-        urls: [
-          "file:///web/",
-        ],
+        urls: ["file:///web/"],
       },
       (details, callback) => {
-        let path = details.url.replace("file:///web/", "");
+        const path = details.url.replace("file:///web/", "");
         callback({ redirectURL: "https://www.google.com/js/bg" + path });
       }
     );

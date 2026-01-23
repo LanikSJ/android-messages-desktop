@@ -24,7 +24,8 @@
     "build:dev": "webpack --mode=development",
     "icons": "png2icons resources/icons/1024x1024.png resources/icon -all -i",
     "lint": "eslint --fix ./src",
-    "package": "yarn electron-builder --config electron-builder.js"
+    "package": "yarn electron-builder --config electron-builder.js",
+    "postinstall": "node patch/electron-rebuild.js"
   },
   "dependencies": {
     "about-window": "1.15.2",
@@ -59,5 +60,9 @@
     "webpack-cli": "^6.0.1",
     "webpack-merge": "^6.0.1",
     "webpack-node-externals": "^3.0.0"
+  },
+  "resolutions": {
+    "tar": "^7.5.4",
+    "@electron/rebuild": "4.0.2"
   }
 }

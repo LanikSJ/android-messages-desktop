@@ -34,10 +34,6 @@
     "rxjs": "^7.8.2",
     "uuid": "^13.0.0"
   },
-  "resolutions": {
-    "@electron/rebuild": "^4.0.2",
-    "tar": "^7.5.4"
-  },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
     "@types/node": "25.0.10",

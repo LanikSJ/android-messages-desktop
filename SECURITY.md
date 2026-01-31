@@ -61,7 +61,7 @@ We ask that you:
 This application is built with Electron, which combines Chromium and Node.js. We implement the following security measures:
 
 - **Node.js Integration Disabled**: Node.js integration is disabled in the renderer process to prevent access to system
-APIs
+  APIs
 - **Context Isolation**: Enabled to prevent prototype pollution attacks
 - **Content Security Policy**: Implemented to prevent XSS attacks
 - **User Agent Override**: Modified to prevent Google from blocking the application

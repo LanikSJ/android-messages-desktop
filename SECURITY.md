@@ -25,7 +25,10 @@ We take security seriously and appreciate your efforts to responsibly disclose y
 channels:
 
 1. **GitHub Security Advisories** (Preferred): [Report via GitHub](https://github.com/LanikSJ/android-messages-desktop/security/advisories/new)
-2. **Email**: Send details to [security@android-messages-desktop.com](mailto:security@android-messages-desktop.com)
+2. **Email**: Send details to [security@lanik.us](mailto:security@lanik.us)
+3. **Security Discussions**: Open a discussion in our [GitHub Discussions](https://github.com/LanikSJ/android-messages-desktop/discussions/categories/security)
+4. **Security Issues**: Create a [Security Advisory](https://github.com/LanikSJ/android-messages-desktop/security/advisories/new)
+  on GitHub
 
 ### What to Include
 

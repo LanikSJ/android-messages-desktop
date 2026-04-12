@@ -34,13 +34,13 @@ jobs:
       - uses: actions/checkout@v6
 
       - name: Setup pnpm ${{ matrix.pnpm-version }}
-        uses: pnpm/action-setup@v6
+        uses: pnpm/action-setup@08c4be7e2e672a47d11bd04269e27e5f3e8529cb # v6.0.0
         with:
           version: ${{ matrix.pnpm-version }}
           run_install: false
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: pnpm
@@ -54,6 +54,20 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Cache node_modules
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+        with:
+          path: ./node_modules
+          key: ${{ matrix.os }}-${{ matrix.node-version }}-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+        env:
+          cache-name: node-modules
+
+      - run: sudo apt-get update -y && sudo apt-get install --no-install-recommends -y libopenjp2-tools rpm libarchive-tools
+        name: Install Linux Dependencies
+        if: (startsWith(matrix.os, 'ubuntu'))
+
+      - run: yarn install --frozen-lockfile
 
       - name: Build and publish
         run: pnpm run dist --publish onTagOrDraft

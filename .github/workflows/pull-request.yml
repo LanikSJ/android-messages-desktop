@@ -52,7 +52,7 @@ jobs:
           sudo apt-get install --no-install-recommends -y
           libopenjp2-tools rpm libarchive-tools
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Build

@@ -1,10 +1,9 @@
 {
   "name": "android-messages-desktop",
   "description": "Messages for web, as a desktop app",
-  "version": "5.7.1",
-  "revision": "1",
+  "version": "6.0.0",
   "author": {
-    "name": "Kyle Rosenberg",
+    "name": "OrangeDrangon",
     "email": "25403517+OrangeDrangon@users.noreply.github.com"
   },
   "license": "MIT",
@@ -19,26 +18,27 @@
   },
   "main": "app/background.js",
   "scripts": {
-    "start": "yarn build:dev && cross-env NODE_ENV=development electron ./app/background.js",
-    "dist": "yarn build && yarn package",
+    "dev": "pnpm run build:dev && cross-env NODE_ENV=development electron ./app/background.js",
+    "dist": "pnpm run build && pnpm run package",
     "build": "webpack --mode=production",
     "build:dev": "webpack --mode=development",
     "icons": "png2icons resources/icons/1024x1024.png resources/icon -all -i",
     "lint": "eslint --fix ./src",
-    "package": "yarn electron-builder --config electron-builder.js"
+    "package": "electron-builder --config electron-builder.js"
   },
   "dependencies": {
     "about-window": "1.15.2",
+    "electron-updater": "6.8.3",
     "electron-updater": "6.8.3",
     "fs-jetpack": "^5.1.0",
     "glob": "^13.0.6",
     "rxjs": "^7.8.2",
     "uuid": "^13.0.0"
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@types/node": "25.5.2",
-    "@types/uuid": "^11.0.0",
+    "@types/node": "25.6.0",
     "@types/webpack": "^5.28.0",
     "@types/webpack-node-externals": "^3.0.4",
     "@typescript-eslint/eslint-plugin": "^8.58.1",

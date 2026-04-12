@@ -67,8 +67,6 @@ jobs:
         name: Install Linux Dependencies
         if: (startsWith(matrix.os, 'ubuntu'))
 
-      - run: yarn install --frozen-lockfile
-
       - name: Build and publish
         run: pnpm run dist --publish onTagOrDraft
         env:

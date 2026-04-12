@@ -6,6 +6,7 @@ We actively support the following versions of Android Messages Desktop:
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 6.0.x   | :white_check_mark: |
 | 5.7.x   | :white_check_mark: |
 | 5.6.x   | :white_check_mark: |
 | 5.5.x   | :white_check_mark: |

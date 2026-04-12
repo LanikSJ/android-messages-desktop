@@ -67,8 +67,8 @@ jobs:
         name: Install Linux Dependencies
         if: (startsWith(matrix.os, 'ubuntu'))
 
-      - name: Build and publish
-        run: pnpm run dist --publish onTagOrDraft
+      - name: Build and Publish Artifacts
+        run: pnpm run dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

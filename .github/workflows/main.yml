@@ -68,7 +68,7 @@ jobs:
         if: (startsWith(matrix.os, 'ubuntu'))
 
       - name: Build and Publish Artifacts
-        run: pnpm run dist
+        run: pnpm run dist --publish onTagOrDraft
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

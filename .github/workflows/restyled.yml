@@ -1,0 +1,85 @@
+name: Restyled
+
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - closed
+      - synchronize
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  restyle-pr:
+    name: Restyle PR for Main Repository
+    if: |
+      github.event.action != 'closed' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: Setup Restyled
+        uses: restyled-io/actions/setup@15a27a1875c7c7c5b1a32343861f66c5f07baa8b # v4.4.20
+      - name: Run Restyled
+        id: restyler
+        uses: restyled-io/actions/run@15a27a1875c7c7c5b1a32343861f66c5f07baa8b # v4.4.20
+        with:
+          fail-on-differences: true
+
+      - name: Create Restyled PR
+        if: ${{ !cancelled() && steps.restyler.outputs.success == 'true' }}
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
+        with:
+          base: ${{ steps.restyler.outputs.restyled-base }}
+          branch: ${{ steps.restyler.outputs.restyled-head }}
+          title: ${{ steps.restyler.outputs.restyled-title }}
+          body: ${{ steps.restyler.outputs.restyled-body }}
+          labels: "restyled"
+          reviewers: ${{ github.event.pull_request.user.login }}
+          delete-branch: true
+
+  restyle-fork:
+    name: Restyle PR for Forks
+    if: |
+      github.event.action != 'closed' &&
+      github.event.pull_request.head.repo.full_name != github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: Setup Restyled
+        uses: restyled-io/actions/setup@15a27a1875c7c7c5b1a32343861f66c5f07baa8b # v4.4.20
+      - name: Run Restyled
+        uses: restyled-io/actions/run@15a27a1875c7c7c5b1a32343861f66c5f07baa8b # v4.4.20
+        with:
+          fail-on-differences: true
+
+  cleanup-restyled-prs:
+    name: Cleanup Restyled PRs
+    if: ${{ github.event.action == 'closed' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Restyled
+        uses: restyled-io/actions/setup@15a27a1875c7c7c5b1a32343861f66c5f07baa8b # v4.4.20
+      - name: Run Restyled
+        id: restyler
+        uses: restyled-io/actions/run@15a27a1875c7c7c5b1a32343861f66c5f07baa8b # v4.4.20
+      - name: Close Restyled PR
+        run: gh --repo "$REPO" pr close "$BRANCH" --delete-branch || true
+        env:
+          REPO: ${{ github.repository }}
+          BRANCH: ${{ steps.restyler.outputs.restyled-head }}
+          GH_TOKEN: ${{ github.token }}

@@ -5,11 +5,16 @@ on:
     branches:
       - main
   pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
-      - edited
+    types: [opened, synchronize, reopened, edited]
+    paths:
+      - .github/workflows/ci.yml
+      - src/**
+      - electron-builder.js
+      - package.json
+      - pnpm-lock.yaml
+      - pnpm-workspace.yaml
+      - tsconfig.json
+      - webpack.config.ts
 
 permissions:
   contents: read

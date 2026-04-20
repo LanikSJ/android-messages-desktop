@@ -2,7 +2,6 @@
   "name": "android-messages-desktop",
   "description": "Messages for web, as a desktop app",
   "version": "6.0.1",
-  "version": "6.0.1",
   "author": {
     "name": "OrangeDrangon",
     "email": "25403517+OrangeDrangon@users.noreply.github.com"
@@ -25,7 +24,6 @@
     "build:dev": "webpack --mode=development",
     "icons": "png2icons resources/icons/1024x1024.png resources/icon -all -i",
     "lint": "eslint --fix ./src",
-    "package": "electron-builder --config electron-builder.config.js"
     "package": "electron-builder --config electron-builder.config.js"
   },
   "dependencies": {

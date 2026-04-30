@@ -4,6 +4,15 @@ on:
   push:
     branches:
       - main
+    paths:
+      - .github/workflows/ci.yml
+      - src/**
+      - electron-builder.js
+      - package.json
+      - pnpm-lock.yaml
+      - pnpm-workspace.yaml
+      - tsconfig.json
+      - webpack.config.ts
   pull_request:
     types: [ opened, synchronize, reopened, edited ]
     paths:

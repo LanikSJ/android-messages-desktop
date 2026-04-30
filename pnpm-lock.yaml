@@ -5,7 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 importers:
-
   .:
     dependencies:
       about-window:
@@ -98,7 +97,6 @@ importers:
         version: 3.0.0
 
 packages:
-
   7zip-bin@5.2.0:
     resolution:
       {
@@ -1353,7 +1351,7 @@ packages:
         integrity: sha512-ZdzmqwKmECOWJpqefloC5OJy1+WZBBse5+MR88z9g9Zn4VY+WYUkAyojmhzJckH5YbbZGcYIuGAkY5/Ys5OM2Q==,
       }
     engines: { node: ">=8" }
-    os: [ darwin ]
+    os: [darwin]
     hasBin: true
 
   dotenv-expand@11.0.7:
@@ -2041,7 +2039,7 @@ packages:
         integrity: sha512-T10qvkw0zz4wnm560lOEg0PovVqUXuOFhhHAkixw8/sycy7TJt7v/RrkEKEQnAw2viPSJu6iAkErxnzR0g8PpQ==,
       }
     engines: { node: ^8.11.2 || >=10 }
-    os: [ darwin ]
+    os: [darwin]
 
   iconv-lite@0.6.3:
     resolution:
@@ -2090,7 +2088,8 @@ packages:
       {
         integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==,
       }
-    deprecated: This module is not supported, and leaks memory. Do not use it. Check
+    deprecated:
+      This module is not supported, and leaks memory. Do not use it. Check
       out lru-cache if you want a good and tested way to coalesce async requests
       by a key value, which is much more comprehensive and powerful.
 
@@ -3694,7 +3693,6 @@ packages:
     engines: { node: ">=10" }
 
 snapshots:
-
   7zip-bin@5.2.0: {}
 
   "@cspotcode/source-map-support@0.8.1":

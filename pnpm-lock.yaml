@@ -31,8 +31,8 @@ importers:
         specifier: 10.0.1
         version: 10.0.1(eslint@10.4.0(jiti@2.6.1))
       '@types/node':
-        specifier: 25.9.0
-        version: 25.9.0
+        specifier: 25.9.1
+        version: 25.9.1
       '@types/webpack':
         specifier: ^5.28.0
         version: 5.28.5(webpack-cli@7.0.2)
@@ -49,8 +49,8 @@ importers:
         specifier: ^10.1.0
         version: 10.1.0
       electron:
-        specifier: ^42.1.0
-        version: 42.1.0
+        specifier: ^42.2.0
+        version: 42.2.0
       electron-builder:
         specifier: ^26.8.1
         version: 26.8.1(electron-builder-squirrel-windows@26.8.1)
@@ -77,7 +77,7 @@ importers:
         version: 9.5.7(typescript@6.0.3)(webpack@5.106.2)
       ts-node:
         specifier: ^10.9.1
-        version: 10.9.2(@types/node@25.9.0)(typescript@6.0.3)
+        version: 10.9.2(@types/node@25.9.1)(typescript@6.0.3)
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -310,8 +310,8 @@ packages:
   '@types/node@24.12.4':
     resolution: {integrity: sha512-GUUEShf+PBCGW2KaXwcIt3Yk+e3pkKwWKb9GSyM9WQVE+ep2jzmHdGsHzu4wgcZy5fN9FBdVzjpBQsYlpfpgLA==}
 
-  '@types/node@25.9.0':
-    resolution: {integrity: sha512-AOQwYUNolgy3VosiRqXrACUXTN8nJUtPl7FJXMqZVyxiiCLhQuG3jXKvCS1ALr+Y2OmZhzzLVlYPEqJaiqkaJQ==}
+  '@types/node@25.9.1':
+    resolution: {integrity: sha512-xfrlY7UD5rMJk3ZVJP8BNzS28J36YJg+xp+LPXV1TdWxr8uMH5A860QNxYDGQe/ylDSgjxE52Q9VnO7p75tJxg==}
 
   '@types/plist@3.0.5':
     resolution: {integrity: sha512-E6OCaRmAe4WDmWNsL/9RMqdkkzDCY1etutkflWk4c+AcjDU07Pcz1fQwTX0TQz+Pxqn9i4L1TU3UFpjnrcDgxA==}
@@ -800,8 +800,8 @@ packages:
     resolution: {integrity: sha512-bO3y10YikuUwUuDUQRM4KfwNkKhnpVO7IPdbsrejwN9/AABJzzTQ4GeHwyzNSrVO+tEH3/Np255a3sVZpZDjvg==}
     engines: {node: '>=8.0.0'}
 
-  electron@42.1.0:
-    resolution: {integrity: sha512-0szNwC/0dWtkvNce5j3ThiuL0TxBNrZN/BZhdOiGwbLreiD/+u3MGpkct4hA5Ycagb8MXjpEr5/oosi+FwuKRQ==}
+  electron@42.2.0:
+    resolution: {integrity: sha512-b2Tc7sIKiZEl0tBVwFM5GJ+FT5KYhmy9QJHjx8BGVZPVW2SctXWEvrE959ElB56qw7H05dBkhlikDA1DmpaAMw==}
     engines: {node: '>= 22.12.0'}
     hasBin: true
 
@@ -2197,7 +2197,7 @@ snapshots:
     dependencies:
       '@types/http-cache-semantics': 4.2.0
       '@types/keyv': 3.1.4
-      '@types/node': 25.9.0
+      '@types/node': 25.9.1
       '@types/responselike': 1.0.3
 
   '@types/debug@4.1.13':
@@ -2222,7 +2222,7 @@ snapshots:
 
   '@types/fs-extra@9.0.13':
     dependencies:
-      '@types/node': 25.9.0
+      '@types/node': 25.9.1
 
   '@types/http-cache-semantics@4.2.0': {}
 
@@ -2230,7 +2230,7 @@ snapshots:
 
   '@types/keyv@3.1.4':
     dependencies:
-      '@types/node': 25.9.0
+      '@types/node': 25.9.1
 
   '@types/ms@2.1.0': {}
 
@@ -2238,26 +2238,26 @@ snapshots:
     dependencies:
       undici-types: 7.16.0
 
-  '@types/node@25.9.0':
+  '@types/node@25.9.1':
     dependencies:
       undici-types: 7.24.6
 
   '@types/plist@3.0.5':
     dependencies:
-      '@types/node': 25.9.0
+      '@types/node': 25.9.1
       xmlbuilder: 15.1.1
     optional: true
 
   '@types/responselike@1.0.3':
     dependencies:
-      '@types/node': 25.9.0
+      '@types/node': 25.9.1
 
   '@types/verror@1.10.11':
     optional: true
 
   '@types/webpack-node-externals@3.0.4(webpack-cli@7.0.2)':
     dependencies:
-      '@types/node': 25.9.0
+      '@types/node': 25.9.1
       webpack: 5.106.2(webpack-cli@7.0.2)
     transitivePeerDependencies:
       - '@swc/core'
@@ -2267,7 +2267,7 @@ snapshots:
 
   '@types/webpack@5.28.5(webpack-cli@7.0.2)':
     dependencies:
-      '@types/node': 25.9.0
+      '@types/node': 25.9.1
       tapable: 2.3.3
       webpack: 5.106.2(webpack-cli@7.0.2)
     transitivePeerDependencies:
@@ -2278,7 +2278,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 25.9.0
+      '@types/node': 25.9.1
     optional: true
 
   '@typescript-eslint/eslint-plugin@8.59.4(@typescript-eslint/parser@8.59.4(eslint@10.4.0(jiti@2.6.1))(typescript@6.0.3))(eslint@10.4.0(jiti@2.6.1))(typescript@6.0.3)':
@@ -2894,7 +2894,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  electron@42.1.0:
+  electron@42.2.0:
     dependencies:
       '@electron/get': 5.0.0
       '@types/node': 24.12.4
@@ -3346,7 +3346,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 25.9.0
+      '@types/node': 25.9.1
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -3859,14 +3859,14 @@ snapshots:
       typescript: 6.0.3
       webpack: 5.106.2(webpack-cli@7.0.2)
 
-  ts-node@10.9.2(@types/node@25.9.0)(typescript@6.0.3):
+  ts-node@10.9.2(@types/node@25.9.1)(typescript@6.0.3):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.12
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 25.9.0
+      '@types/node': 25.9.1
       acorn: 8.16.0
       acorn-walk: 8.3.5
       arg: 4.1.3

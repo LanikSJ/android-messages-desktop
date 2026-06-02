@@ -1,4 +1,4 @@
-# AI Rules & Project Standards for android-messages-desktop
+# Agent Rules & Project Standards for android-messages-desktop
 
 ## Repository Overview
 

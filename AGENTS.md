@@ -28,8 +28,7 @@ android-messages-desktop is a desktop client for Android Messages built with Ele
 
 ### Markdown Compliance Requirements (MANDATORY)
 
-- **ALL markdown files (.md) MUST pass markdownlint validation**
-   with zero errors or warnings
+- **ALL markdown files (.md) MUST pass markdownlint validation** with zero errors or warnings
 - Run `markdownlint <filename>` on every markdown file before considering it complete
 - Follow the project's `.markdownlint.json` configuration strictly
 - Common requirements include:
@@ -70,8 +69,7 @@ android-messages-desktop is a desktop client for Android Messages built with Ele
 
 - Preserve existing functionality unless explicitly asked to change it
 - Update documentation when adding new features
-- **Always run markdownlint and fix all issues in markdown files**
-   before considering changes complete
+- **Always run markdownlint and fix all issues in markdown files** before considering changes complete
 
 ### Electron App Standards
 
@@ -82,8 +80,7 @@ android-messages-desktop is a desktop client for Android Messages built with Ele
 
 ## GitHub & Automation Standards
 
- These rules apply specifically to files in `.github/*`
- (workflows, templates, and documentation).
+These rules apply specifically to files in `.github/*` (workflows, templates, and documentation).
 
 ### Quality Gates (MANDATORY)
 

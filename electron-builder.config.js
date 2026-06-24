@@ -3,40 +3,39 @@ export default {
   artifactName: "${productName}-v${version}-${os}-${arch}.${ext}",
   productName: "Android Messages",
   copyright: "Copyright 2026 OrangeDrangon",
-  files: [ "app/**/*", "resources/**/*" ],
+  files: ["app/**/*", "resources/**/*"],
   directories: {
     buildResources: "resources",
-    output: "dist",
+    output: "dist"
   },
-  publish:
-      [
-        {
-          provider : "github",
-          releaseType : "draft",
-        },
-      ],
+  publish: [
+    {
+      provider: "github",
+      releaseType: "draft"
+    }
+  ],
   linux: {
-    target: [ "AppImage", "deb", "pacman", "rpm", "freebsd", "zip" ],
+    target: ["AppImage", "deb", "pacman", "rpm", "freebsd", "zip"],
     executableName: "AndroidMessages",
     category: "Network",
     desktop: {
       entry: {
-        Name: "Android Messages Desktop",
-      },
-    },
+        Name: "Android Messages Desktop"
+      }
+    }
   },
   win: {
-    target: [ "nsis", "portable" ],
+    target: ["nsis", "portable"]
   },
   mac: {
     category: "public.app-category.social-networking",
-    target: {target: "default", arch: "universal"},
+    target: { target: "default", arch: "universal" }
   },
   portable: {
-    artifactName: "${productName}-v${version}-${os}-${arch}.portable.${ext}",
+    artifactName: "${productName}-v${version}-${os}-${arch}.portable.${ext}"
   },
   nsis: {
     allowToChangeInstallationDirectory: true,
-    oneClick: false,
-  },
+    oneClick: false
+  }
 };

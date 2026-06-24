@@ -6,13 +6,13 @@ export default {
   files: ["app/**/*", "resources/**/*"],
   directories: {
     buildResources: "resources",
-    output: "dist",
+    output: "dist"
   },
   publish: [
     {
       provider: "github",
-      releaseType: "draft",
-    },
+      releaseType: "draft"
+    }
   ],
   linux: {
     target: ["AppImage", "deb", "pacman", "rpm", "freebsd", "zip"],
@@ -20,22 +20,22 @@ export default {
     category: "Network",
     desktop: {
       entry: {
-        Name: "Android Messages Desktop",
-      },
-    },
+        Name: "Android Messages Desktop"
+      }
+    }
   },
   win: {
-    target: ["nsis", "portable"],
+    target: ["nsis", "portable"]
   },
   mac: {
     category: "public.app-category.social-networking",
-    target: { target: "default", arch: "universal" },
+    target: { target: "default", arch: "universal" }
   },
   portable: {
-    artifactName: "${productName}-v${version}-${os}-${arch}.portable.${ext}",
+    artifactName: "${productName}-v${version}-${os}-${arch}.portable.${ext}"
   },
   nsis: {
     allowToChangeInstallationDirectory: true,
-    oneClick: false,
-  },
+    oneClick: false
+  }
 };

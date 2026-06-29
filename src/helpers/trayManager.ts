@@ -1,34 +1,15 @@
-import {
-  app,
-  Menu,
-  MenuItemConstructorOptions,
-  nativeImage,
-  Tray,
-} from "electron";
+import { app, Menu, MenuItemConstructorOptions, nativeImage, Tray } from "electron";
 import path from "path";
 import { trayMenuTemplate } from "../menu/trayMenu";
-import {
-  INITIAL_ICON_IMAGE,
-  IS_DEV,
-  IS_MAC,
-  IS_WINDOWS,
-  RESOURCES_PATH,
-  TRAY_AVATAR_SIZE,
-  UUID_NAMESPACE,
-} from "./constants";
+import { INITIAL_ICON_IMAGE, IS_DEV, IS_MAC, IS_WINDOWS, RESOURCES_PATH, TRAY_AVATAR_SIZE, UUID_NAMESPACE } from "./constants";
 import { settings } from "./settings";
 import { v5 as uuidv5 } from "uuid";
 import { separator } from "../menu/items/separator";
 import { getMainWindow } from "./getMainWindow";
 
 // bring the settings into scoped
-const {
-  trayEnabled,
-  seenMinimizeToTrayWarning,
-  monochromeIconEnabled,
-  showIconsInRecentConversationTrayEnabled,
-  trayIconRedDotEnabled,
-} = settings;
+const { trayEnabled, seenMinimizeToTrayWarning, monochromeIconEnabled, showIconsInRecentConversationTrayEnabled, trayIconRedDotEnabled } =
+  settings;
 
 export interface Conversation {
   name: string | null | undefined;
@@ -48,9 +29,7 @@ export class TrayManager {
     trayEnabled.subscribe((val) => {
       this.handleTrayEnabledToggle(val);
     });
-    monochromeIconEnabled.subscribe(() =>
-      this.tray?.setImage(this.getIconPath())
-    );
+    monochromeIconEnabled.subscribe(() => this.tray?.setImage(this.getIconPath()));
     trayIconRedDotEnabled.subscribe(() => {
       this.tray?.setImage(this.getIconPath());
     });
@@ -62,10 +41,7 @@ export class TrayManager {
     }
 
     if (IS_WINDOWS) {
-      const guid = uuidv5(
-        `${app.getName()}${IS_DEV ? "-development" : ""}-${app.getAppPath()}`,
-        UUID_NAMESPACE
-      );
+      const guid = uuidv5(`${app.getName()}${IS_DEV ? "-development" : ""}-${app.getAppPath()}`, UUID_NAMESPACE);
 
       this.tray = new Tray(this.getIconPath(), guid);
     } else {
@@ -95,34 +71,23 @@ export class TrayManager {
   }
 
   public refreshTrayMenu() {
-    const conversationMenuItems: MenuItemConstructorOptions[] =
-      this.recentConversations.map(({ name, image, recentMessage, i }) => {
-        const icon =
-          image != null &&
-          image != INITIAL_ICON_IMAGE &&
-          showIconsInRecentConversationTrayEnabled.value
-            ? nativeImage
-                .createFromDataURL(image)
-                .resize({ width: TRAY_AVATAR_SIZE, height: TRAY_AVATAR_SIZE })
-            : undefined;
+    const conversationMenuItems: MenuItemConstructorOptions[] = this.recentConversations.map(({ name, image, recentMessage, i }) => {
+      const icon =
+        image != null && image != INITIAL_ICON_IMAGE && showIconsInRecentConversationTrayEnabled.value
+          ? nativeImage.createFromDataURL(image).resize({ width: TRAY_AVATAR_SIZE, height: TRAY_AVATAR_SIZE })
+          : undefined;
 
-        return {
-          label: name ?? "Name not Found",
-          sublabel: recentMessage ?? undefined,
-          icon,
-          click: () => {
-            getMainWindow()?.show();
-            getMainWindow()?.webContents.send("focus-conversation", i);
-          },
-        };
-      });
-    this.tray?.setContextMenu(
-      Menu.buildFromTemplate([
-        ...conversationMenuItems,
-        separator,
-        ...trayMenuTemplate,
-      ])
-    );
+      return {
+        label: name ?? "Name not Found",
+        sublabel: recentMessage ?? undefined,
+        icon,
+        click: () => {
+          getMainWindow()?.show();
+          getMainWindow()?.webContents.send("focus-conversation", i);
+        }
+      };
+    });
+    this.tray?.setContextMenu(Menu.buildFromTemplate([...conversationMenuItems, separator, ...trayMenuTemplate]));
   }
 
   /**
@@ -133,8 +98,7 @@ export class TrayManager {
     if (IS_MAC) {
       filename = "icon_macTemplate.png";
     } else {
-      const unread =
-        this.messagesAreUnread && trayIconRedDotEnabled.value ? "unread_" : "";
+      const unread = this.messagesAreUnread && trayIconRedDotEnabled.value ? "unread_" : "";
       const mono = monochromeIconEnabled.value ? "_mono" : "";
       filename = `${unread}icon${mono}.png`;
     }
@@ -173,8 +137,7 @@ export class TrayManager {
       if (!seenMinimizeToTrayWarning.value && this.tray != null) {
         this.tray.displayBalloon({
           title: "Android Messages",
-          content:
-            "Android Messages is still running in the background. To close it, use the File menu or right-click on the tray icon.",
+          content: "Android Messages is still running in the background. To close it, use the File menu or right-click on the tray icon."
         });
         seenMinimizeToTrayWarning.next(true);
       }
@@ -187,7 +150,7 @@ export class TrayManager {
       "startInTrayMenuItem",
       "monochromeIconEnabledMenuItem",
       "showIconsInRecentConversationTrayEnabledMenuItem",
-      "trayIconRedDotEnabledMenuItem",
+      "trayIconRedDotEnabledMenuItem"
     ];
 
     if (newValue) {

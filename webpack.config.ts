@@ -14,21 +14,21 @@ const base: Configuration = {
   devtool: "source-map",
   node: {
     __dirname: false,
-    __filename: false,
+    __filename: false
   },
   module: {
     rules: [
       {
         test: /\.m?ts$/,
         exclude: /node_modules/,
-        use: ["ts-loader"],
-      },
-    ],
+        use: ["ts-loader"]
+      }
+    ]
   },
   resolve: {
-    extensions: [".mts", ".ts", ".js"],
+    extensions: [".mts", ".ts", ".js"]
   },
-  watch: false,
+  watch: false
 };
 
 const main = merge(base, {
@@ -37,8 +37,8 @@ const main = merge(base, {
   entry: "./src/background.ts",
   output: {
     filename: "background.js",
-    path: path.resolve(__dirname, "app"),
-  },
+    path: path.resolve(__dirname, "app")
+  }
 });
 
 const preload = merge(base, {
@@ -47,8 +47,8 @@ const preload = merge(base, {
   entry: "./src/bridge.ts",
   output: {
     filename: "bridge.js",
-    path: path.resolve(__dirname, "app"),
-  },
+    path: path.resolve(__dirname, "app")
+  }
 });
 
 export default [main, preload];

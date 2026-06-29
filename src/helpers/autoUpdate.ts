@@ -26,12 +26,8 @@ let interactiveCheck = false;
 // Guards against overlapping checks/downloads if the user clicks repeatedly.
 let busy = false;
 
-function showDialog(
-  options: Electron.MessageBoxOptions
-): Promise<Electron.MessageBoxReturnValue> {
-  return updateWindow
-    ? dialog.showMessageBox(updateWindow, options)
-    : dialog.showMessageBox(options);
+function showDialog(options: Electron.MessageBoxOptions): Promise<Electron.MessageBoxReturnValue> {
+  return updateWindow ? dialog.showMessageBox(updateWindow, options) : dialog.showMessageBox(options);
 }
 
 function setProgress(fraction: number): void {
@@ -49,7 +45,7 @@ function reportError(err: unknown): void {
       title: "Update Error",
       message: "Couldn't complete the update.",
       detail: err instanceof Error ? err.message : String(err),
-      icon: icon(),
+      icon: icon()
     });
   }
 }
@@ -62,7 +58,7 @@ autoUpdater.on("update-not-available", () => {
       title: "No Update Found",
       message: "You're up to date.",
       detail: `Android Messages Desktop ${app.getVersion()} is the latest version.`,
-      icon: icon(),
+      icon: icon()
     });
   }
 });
@@ -76,7 +72,7 @@ autoUpdater.on("update-available", async (info) => {
     title: "Update Available",
     message: `Version ${info.version} is available.`,
     detail: `You're on ${app.getVersion()}. Download and install it now? The app will restart to finish.`,
-    icon: icon(),
+    icon: icon()
   });
 
   if (response === 0) {
@@ -100,9 +96,8 @@ autoUpdater.on("update-downloaded", async (info) => {
     cancelId: 1,
     title: "Update Ready",
     message: `Version ${info.version} has been downloaded.`,
-    detail:
-      "Restart now to finish installing, or it will be installed the next time you quit.",
-    icon: icon(),
+    detail: "Restart now to finish installing, or it will be installed the next time you quit.",
+    icon: icon()
   });
 
   if (response === 0) {

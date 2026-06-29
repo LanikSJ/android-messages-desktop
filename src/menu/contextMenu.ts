@@ -9,48 +9,45 @@ import { separator } from "./items/separator";
 const standardMenuTemplate: MenuItemConstructorOptions[] = [
   {
     label: "Copy",
-    role: "copy",
+    role: "copy"
   },
   separator,
   {
     label: "Select All",
-    role: "selectAll",
-  },
+    role: "selectAll"
+  }
 ];
 
 const textMenuTemplate: MenuItemConstructorOptions[] = [
   {
     label: "Undo",
-    role: "undo",
+    role: "undo"
   },
   {
     label: "Redo",
-    role: "redo",
+    role: "redo"
   },
   separator,
   {
     label: "Cut",
-    role: "cut",
+    role: "cut"
   },
   {
     label: "Copy",
-    role: "copy",
+    role: "copy"
   },
   {
     label: "Paste",
-    role: "paste",
+    role: "paste"
   },
   separator,
   {
     label: "Select All",
-    role: "selectAll",
-  },
+    role: "selectAll"
+  }
 ];
 
-export const popupContextMenu = (
-  _event: Electron.Event,
-  params: ContextMenuParams
-) => {
+export const popupContextMenu = (_event: Electron.Event, params: ContextMenuParams) => {
   let menu = Menu.buildFromTemplate(standardMenuTemplate);
   if (params.mediaType === "none" && params.isEditable) {
     const textMenuTemplateCopy = [...textMenuTemplate];
@@ -59,18 +56,14 @@ export const popupContextMenu = (
         { type: "separator" },
         {
           label: "Add to Dictionary",
-          click: () =>
-            getMainWindow()?.webContents.session.addWordToSpellCheckerDictionary(
-              params.misspelledWord
-            ),
+          click: () => getMainWindow()?.webContents.session.addWordToSpellCheckerDictionary(params.misspelledWord)
         },
         { type: "separator" }
       );
       for (const suggestion of params.dictionarySuggestions.reverse()) {
         textMenuTemplateCopy.unshift({
           label: suggestion,
-          click: () =>
-            getMainWindow()?.webContents.replaceMisspelling(suggestion),
+          click: () => getMainWindow()?.webContents.replaceMisspelling(suggestion)
         });
       }
     }

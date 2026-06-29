@@ -1,11 +1,5 @@
 import "./helpers/portable";
-import {
-  app,
-  Event as ElectronEvent,
-  ipcMain,
-  powerMonitor,
-  shell,
-} from "electron";
+import { app, Event as ElectronEvent, ipcMain, powerMonitor, shell } from "electron";
 import { BrowserWindow } from "electron/main";
 import path from "path";
 import process from "process";
@@ -17,14 +11,8 @@ import { Conversation, TrayManager } from "./helpers/trayManager";
 import { popupContextMenu } from "./menu/contextMenu";
 import fs from "fs";
 
-const {
-  autoHideMenuEnabled,
-  trayEnabled,
-  savedWindowSize,
-  savedWindowPosition,
-  checkForUpdateOnLaunchEnabled,
-  taskbarFlashEnabled,
-} = settings;
+const { autoHideMenuEnabled, trayEnabled, savedWindowSize, savedWindowPosition, checkForUpdateOnLaunchEnabled, taskbarFlashEnabled } =
+  settings;
 
 let mainWindow: BrowserWindow;
 let trayManager: TrayManager;
@@ -78,19 +66,15 @@ if (gotTheLock) {
       autoHideMenuBar: autoHideMenuEnabled.value,
       title: "Android Messages",
       show: false,
-      icon: IS_LINUX
-        ? path.resolve(RESOURCES_PATH, "icons", "128x128.png")
-        : undefined,
+      icon: IS_LINUX ? path.resolve(RESOURCES_PATH, "icons", "128x128.png") : undefined,
       titleBarStyle: IS_MAC ? "hiddenInset" : "default",
       webPreferences: {
-        preload: IS_DEV
-          ? path.resolve(app.getAppPath(), "bridge.js")
-          : path.resolve(app.getAppPath(), "app", "bridge.js"),
+        preload: IS_DEV ? path.resolve(app.getAppPath(), "bridge.js") : path.resolve(app.getAppPath(), "app", "bridge.js"),
         contextIsolation: true,
         nodeIntegration: false,
         sandbox: false,
-        partition: "persist:main",
-      },
+        partition: "persist:main"
+      }
     });
 
     process.env.MAIN_WINDOW_ID = mainWindow.id.toString();
@@ -165,15 +149,13 @@ if (gotTheLock) {
             autoHideMenuBar: true,
             titleBarStyle: "default",
             webPreferences: {
-              preload: IS_DEV
-                ? path.resolve(app.getAppPath(), "bridge.js")
-                : path.resolve(app.getAppPath(), "app", "bridge.js"),
+              preload: IS_DEV ? path.resolve(app.getAppPath(), "bridge.js") : path.resolve(app.getAppPath(), "app", "bridge.js"),
               contextIsolation: true,
               nodeIntegration: false,
               sandbox: false,
-              partition: "persist:main",
-            },
-          },
+              partition: "persist:main"
+            }
+          }
         };
       }
 
@@ -181,27 +163,21 @@ if (gotTheLock) {
       return { action: "deny" };
     });
 
-    mainWindow.webContents.on(
-      "did-fail-load",
-      (_event, errorCode, errorDescription, validatedURL) => {
-        console.log("did-fail-load", {
-          errorCode,
-          errorDescription,
-          validatedURL,
-        });
-      }
-    );
+    mainWindow.webContents.on("did-fail-load", (_event, errorCode, errorDescription, validatedURL) => {
+      console.log("did-fail-load", {
+        errorCode,
+        errorDescription,
+        validatedURL
+      });
+    });
 
-    mainWindow.webContents.on(
-      "did-redirect-navigation",
-      (_event, url, isInPlace, isMainFrame) => {
-        console.log("did-redirect-navigation", {
-          url,
-          isInPlace,
-          isMainFrame,
-        });
-      }
-    );
+    mainWindow.webContents.on("did-redirect-navigation", (_event, url, isInPlace, isMainFrame) => {
+      console.log("did-redirect-navigation", {
+        url,
+        isInPlace,
+        isMainFrame
+      });
+    });
 
     mainWindow.webContents.on("console-message", (_event, level, message) => {
       console.log("renderer console:", level, message);
@@ -262,9 +238,7 @@ if (gotTheLock) {
   });
 
   ipcMain.handle("get-icon", () => {
-    const bitmap = fs.readFileSync(
-      path.resolve(RESOURCES_PATH, "icons", "64x64.png")
-    );
+    const bitmap = fs.readFileSync(path.resolve(RESOURCES_PATH, "icons", "64x64.png"));
 
     return Buffer.from(bitmap).toString("base64");
   });

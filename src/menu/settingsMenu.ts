@@ -13,7 +13,7 @@ const {
   monochromeIconEnabled,
   showIconsInRecentConversationTrayEnabled,
   trayIconRedDotEnabled,
-  taskbarFlashEnabled,
+  taskbarFlashEnabled
 } = settings;
 
 export const settingsMenu: MenuItemConstructorOptions = {
@@ -36,11 +36,11 @@ export const settingsMenu: MenuItemConstructorOptions = {
         autoHideMenuEnabled.next(item.checked);
         window?.setMenuBarVisibility(!autoHideMenuEnabled.value);
         window?.setAutoHideMenuBar(autoHideMenuEnabled.value);
-      },
+      }
     },
     {
       ...separator,
-      visible: !IS_MAC,
+      visible: !IS_MAC
     },
     {
       id: "enableTrayIconMenuItem",
@@ -49,7 +49,7 @@ export const settingsMenu: MenuItemConstructorOptions = {
       checked: trayEnabled.value,
       click: async (item: MenuItem): Promise<void> => {
         trayEnabled.next(item.checked);
-      },
+      }
     },
     {
       id: "startInTrayMenuItem",
@@ -59,7 +59,7 @@ export const settingsMenu: MenuItemConstructorOptions = {
       enabled: trayEnabled.value,
       click: (item: MenuItem): void => {
         startInTrayEnabled.next(item.checked);
-      },
+      }
     },
     {
       id: "monochromeIconEnabledMenuItem",
@@ -69,7 +69,7 @@ export const settingsMenu: MenuItemConstructorOptions = {
       enabled: trayEnabled.value,
       click: (item) => {
         monochromeIconEnabled.next(item.checked);
-      },
+      }
     },
     {
       id: "showIconsInRecentConversationTrayEnabledMenuItem",
@@ -79,7 +79,7 @@ export const settingsMenu: MenuItemConstructorOptions = {
       enabled: trayEnabled.value,
       click: (item) => {
         showIconsInRecentConversationTrayEnabled.next(item.checked);
-      },
+      }
     },
     {
       id: "trayIconRedDotEnabledMenuItem",
@@ -89,7 +89,7 @@ export const settingsMenu: MenuItemConstructorOptions = {
       enabled: trayEnabled.value,
       click: (item) => {
         trayIconRedDotEnabled.next(item.checked);
-      },
+      }
     },
     separator,
     {
@@ -99,7 +99,7 @@ export const settingsMenu: MenuItemConstructorOptions = {
       checked: hideNotificationContentEnabled.value,
       click: (item) => {
         hideNotificationContentEnabled.next(item.checked);
-      },
+      }
     },
     {
       id: "taskbarFlashEnabledMenuItem",
@@ -108,7 +108,7 @@ export const settingsMenu: MenuItemConstructorOptions = {
       checked: taskbarFlashEnabled.value,
       click: (item) => {
         taskbarFlashEnabled.next(item.checked);
-      },
+      }
     },
     separator,
     {
@@ -118,7 +118,7 @@ export const settingsMenu: MenuItemConstructorOptions = {
       checked: checkForUpdateOnLaunchEnabled.value,
       click: (item) => {
         checkForUpdateOnLaunchEnabled.next(item.checked);
-      },
-    },
-  ],
+      }
+    }
+  ]
 };

@@ -1,25 +1,17 @@
 import { contextBridge, ipcRenderer, webFrame } from "electron";
 
-import {
-  INITIAL_ICON_IMAGE,
-  IS_MAC,
-} from "./preload/constants_preload";
-import {
-  createRecentThreadObserver,
-  createUnreadObserver,
-  focusFunctions,
-  recentThreadObserver,
-} from "./preload/observers";
+import { INITIAL_ICON_IMAGE, IS_MAC } from "./preload/constants_preload";
+import { createRecentThreadObserver, createUnreadObserver, focusFunctions, recentThreadObserver } from "./preload/observers";
 
 declare global {
   interface Window {
-    interop: unknown;  }
+    interop: unknown;
+  }
 }
 
 const preload_init = () => {
-
-    if (IS_MAC) {
-      const titlebarStyle = `:root {
+  if (IS_MAC) {
+    const titlebarStyle = `:root {
         --amd-titlebar-height: 28px;
       }
 
@@ -57,55 +49,51 @@ const preload_init = () => {
         -webkit-app-region: no-drag;
       }`;
 
-      document.body.appendChild(
-        Object.assign(document.createElement("style"), {
-          textContent: titlebarStyle,
-        })
-      );
+    document.body.appendChild(
+      Object.assign(document.createElement("style"), {
+        textContent: titlebarStyle
+      })
+    );
 
-      const titlebar = document.createElement("div");
-      titlebar.id = "amd-titlebar";
-      document.querySelector("mw-app")?.parentNode?.prepend(titlebar);
+    const titlebar = document.createElement("div");
+    titlebar.id = "amd-titlebar";
+    document.querySelector("mw-app")?.parentNode?.prepend(titlebar);
+  }
+
+  const conversationListObserver = new MutationObserver(() => {
+    if (document.querySelector("mws-conversations-list") != null) {
+      createUnreadObserver();
+      createRecentThreadObserver();
+
+      // keep trying to get an image that isnt blank until they load
+      const interval = setInterval(() => {
+        const conversation = document.body.querySelector("mws-conversation-list-item");
+        if (conversation) {
+          const canvas = conversation.querySelector("a div.avatar-container canvas") as HTMLCanvasElement | null;
+
+          if (canvas != null && canvas.toDataURL() != INITIAL_ICON_IMAGE) {
+            recentThreadObserver();
+            // refresh for profile image loads after letter loads.
+            setTimeout(recentThreadObserver, 3000);
+            clearInterval(interval);
+          }
+        }
+      }, 250);
+      conversationListObserver.disconnect();
     }
 
-    const conversationListObserver = new MutationObserver(() => {
-      if (document.querySelector("mws-conversations-list") != null) {
-        createUnreadObserver();
-        createRecentThreadObserver();
+    const title = document.head.querySelector("title");
+    if (title != null) {
+      title.innerText = "Android Messages";
+    }
+  });
 
-        // keep trying to get an image that isnt blank until they load
-        const interval = setInterval(() => {
-          const conversation = document.body.querySelector(
-            "mws-conversation-list-item"
-          );
-          if (conversation) {
-            const canvas = conversation.querySelector(
-              "a div.avatar-container canvas"
-            ) as HTMLCanvasElement | null;
-
-            if (canvas != null && canvas.toDataURL() != INITIAL_ICON_IMAGE) {
-              recentThreadObserver();
-              // refresh for profile image loads after letter loads.
-              setTimeout(recentThreadObserver, 3000);
-              clearInterval(interval);
-            }
-          }
-        }, 250);
-        conversationListObserver.disconnect();
-      }
-
-      const title = document.head.querySelector("title");
-      if (title != null) {
-        title.innerText = "Android Messages";
-      }
-    });
-
-    conversationListObserver.observe(document.body, {
-      attributes: false,
-      subtree: true,
-      childList: true,
-    });
-}
+  conversationListObserver.observe(document.body, {
+    attributes: false,
+    subtree: true,
+    childList: true
+  });
+};
 
 ipcRenderer.on("focus-conversation", (event, i) => {
   focusFunctions[i]();
@@ -122,10 +110,10 @@ contextBridge.exposeInMainWorld("interop", {
     return ipcRenderer.sendSync("should-hide-notification-content");
   },
   get_icon: async () => {
-    const data =  await ipcRenderer.invoke("get-icon");
+    const data = await ipcRenderer.invoke("get-icon");
     return `data:image/png;base64,${data}`;
   },
-  preload_init,
+  preload_init
 });
 webFrame.executeJavaScript(`
   window.addEventListener("load", async () => {
@@ -165,4 +153,4 @@ window.Notification = function (title, options) {
 window.Notification.permission = "granted";
 window.Notification.requestPermission = async () => "granted";
 `);
-contextBridge.exposeInMainWorld("module", {exports: null});
+contextBridge.exposeInMainWorld("module", { exports: null });

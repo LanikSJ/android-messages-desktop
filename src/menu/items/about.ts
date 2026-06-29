@@ -4,10 +4,8 @@ import path from "path";
 import { RESOURCES_PATH } from "../../helpers/constants";
 
 const productName = "Android Messages Desktop";
-const localeStyle =
-  "-webkit-app-region: no-drag; position: absolute; left: 0.5em; bottom: 0.5em; font-size: 12px; color: #999";
-const disclaimerText =
-  "<br><br>Not affiliated with Google in any way.<br>Android is a trademark of Google LLC.";
+const localeStyle = "-webkit-app-region: no-drag; position: absolute; left: 0.5em; bottom: 0.5em; font-size: 12px; color: #999";
+const disclaimerText = "<br><br>Not affiliated with Google in any way.<br>Android is a trademark of Google LLC.";
 const licenseText = `<br><br>${productName} is released under the MIT License.`;
 
 let languageCode = "";
@@ -33,8 +31,8 @@ export const aboutMenuItem: MenuItemConstructorOptions = {
         resizable: false,
         minimizable: false,
         maximizable: false,
-        show: false, // Delays showing until content is ready, prevents FOUC/flash of blank white window
-      },
+        show: false // Delays showing until content is ready, prevents FOUC/flash of blank white window
+      }
     });
-  },
+  }
 };

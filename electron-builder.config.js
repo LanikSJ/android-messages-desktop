@@ -12,7 +12,7 @@ export default {
     category: "Network",
     desktop: { entry: { Name: "Android Messages Desktop" } }
   },
-  win: { target: ["nsis", "portable"] },
+  win: { target: ["nsis", "portable", "zip"] },
   mac: {
     category: "public.app-category.social-networking",
     target: { target: "default", arch: "universal" }

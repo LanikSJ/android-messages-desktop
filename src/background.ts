@@ -1,8 +1,15 @@
-import { app, Event as ElectronEvent, ipcMain, shell } from "electron";
+import "./helpers/portable";
+import {
+  app,
+  Event as ElectronEvent,
+  ipcMain,
+  powerMonitor,
+  shell,
+} from "electron";
 import { BrowserWindow } from "electron/main";
 import path from "path";
 import process from "process";
-import { checkForUpdate } from "./helpers/autoUpdate";
+import { checkForUpdate, setUpdateWindow } from "./helpers/autoUpdate";
 import { IS_DEV, IS_LINUX, IS_MAC, RESOURCES_PATH } from "./helpers/constants";
 import { MenuManager } from "./helpers/menuManager";
 import { setSettingsFlushEnabled, settings } from "./helpers/settings";
@@ -59,10 +66,6 @@ if (gotTheLock) {
 
     new MenuManager();
 
-    if (checkForUpdateOnLaunchEnabled.value && !IS_DEV) {
-      void checkForUpdate(true, false);
-    }
-
     const { width, height } = savedWindowSize.value;
     const { x, y } = savedWindowPosition.value ?? {};
 
@@ -91,6 +94,11 @@ if (gotTheLock) {
     });
 
     process.env.MAIN_WINDOW_ID = mainWindow.id.toString();
+
+    setUpdateWindow(mainWindow);
+    if (checkForUpdateOnLaunchEnabled.value && !IS_DEV) {
+      checkForUpdate(false);
+    }
 
     if (!(settings.trayEnabled.value && settings.startInTrayEnabled.value)) {
       mainWindow.show();
@@ -201,6 +209,26 @@ if (gotTheLock) {
     });
 
     mainWindow.webContents.on("context-menu", popupContextMenu);
+
+    // The Google Messages web app frequently ends up on a blank white screen
+    // after the machine resumes from suspend: its connection to the phone is
+    // dropped and it doesn't recover on its own. Reloading restores it without
+    // the user needing to manually hit Ctrl+R. See issue #505.
+    powerMonitor.on("resume", () => {
+      if (!mainWindow.isDestroyed()) {
+        mainWindow.webContents.reload();
+      }
+    });
+
+    // The OS can also kill the renderer outright while suspended (memory
+    // reclaim), which leaves the same blank screen. Reload to recover unless it
+    // exited cleanly (e.g. during shutdown).
+    mainWindow.webContents.on("render-process-gone", (_event, details) => {
+      console.log("render-process-gone", details);
+      if (details.reason !== "clean-exit" && !mainWindow.isDestroyed()) {
+        mainWindow.webContents.reload();
+      }
+    });
   });
 
   ipcMain.on("should-hide-notification-content", (event) => {

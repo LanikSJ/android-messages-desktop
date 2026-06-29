@@ -69,8 +69,7 @@ const preload_init = () => {
       const interval = setInterval(() => {
         const conversation = document.body.querySelector("mws-conversation-list-item");
         if (conversation) {
-          const canvas = conversation.querySelector("a div.avatar-container canvas") as HTMLCanvasElement | null;
-
+          const canvas = conversation.querySelector("a div.avatar-container canvas");
           if (canvas != null && canvas.toDataURL() != INITIAL_ICON_IMAGE) {
             recentThreadObserver();
             // refresh for profile image loads after letter loads.

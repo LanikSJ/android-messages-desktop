@@ -136,8 +136,7 @@ if (gotTheLock) {
       if (!shouldExitOnMainWindowClosed()) {
         event.preventDefault();
         mainWindow.hide();
-        trayManager?.showMinimizeToTrayWarning();
-
+        trayManager.showMinimizeToTrayWarning();
         if (IS_MAC) {
           app.dock?.hide();
         }

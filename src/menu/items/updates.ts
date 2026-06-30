@@ -8,5 +8,5 @@ export const checkForUpdatesMenuItem: MenuItemConstructorOptions = {
     if (!IS_DEV) {
       checkForUpdate(true);
     }
-  },
+  }
 };

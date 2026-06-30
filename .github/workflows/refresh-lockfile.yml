@@ -80,7 +80,7 @@ jobs:
             - Updated `pnpm-lock.yaml` with fresh package resolutions
             - Updated `pnpm-workspace.yaml` with new `minimumReleaseAgeExclude` entries
               if recently published packages violate the minimum release age policy
-          branch: refs/heads/chore/refresh-lockfile
+          branch: chore/refresh-lockfile
           base: main
           delete-branch: true
           labels: |

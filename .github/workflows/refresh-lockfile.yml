@@ -3,7 +3,12 @@ name: Refresh Lockfile
 on:
   schedule:
     # Run every Monday at 06:00 UTC
-    - cron: '0 6 * * 1'
+    - cron: "0 6 * * 1"
+  pull_request:
+    paths:
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - ".github/workflows/refresh-lockfile.yml"
   workflow_dispatch: # Allow manual trigger
 
 permissions:

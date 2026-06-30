@@ -48,7 +48,7 @@ const textMenuTemplate: MenuItemConstructorOptions[] = [
 ];
 
 export const popupContextMenu = (_event: Electron.Event, params: ContextMenuParams) => {
-  let menu: Menu | null = null;
+  let menu: Menu | null;
   if (params.mediaType === "none" && params.isEditable) {
     const textMenuTemplateCopy = [...textMenuTemplate];
     if (params.misspelledWord) {

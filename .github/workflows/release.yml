@@ -37,8 +37,8 @@ jobs:
           - ubuntu-latest
 
     env:
-      NODE_VERSION: 24
-      PNPM_VERSION: 10
+      NODE_VERSION: 26
+      PNPM_VERSION: 11
 
     steps:
       - name: Checkout

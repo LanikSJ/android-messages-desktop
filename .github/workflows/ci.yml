@@ -14,7 +14,7 @@ on:
       - tsconfig.json
       - webpack.config.ts
   pull_request:
-    types: [ opened, synchronize, reopened, edited ]
+    types: [opened, synchronize, reopened, edited]
     paths:
       - .github/workflows/ci.yml
       - src/**
@@ -49,8 +49,8 @@ jobs:
           - ubuntu-latest
 
     env:
-      NODE_VERSION: 24
-      PNPM_VERSION: 10
+      NODE_VERSION: 26
+      PNPM_VERSION: 11
 
     steps:
       - name: Checkout
@@ -73,12 +73,9 @@ jobs:
 
       - name: Install Linux Dependencies
         if: runner.os == 'Linux'
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install --no-install-recommends -y \
-            libopenjp2-tools \
-            rpm \
-            libarchive-tools
+        run: >-
+          sudo apt-get update -y &&
+          sudo apt-get install --no-install-recommends -y libopenjp2-tools rpm libarchive-tools
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile

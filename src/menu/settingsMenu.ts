@@ -13,7 +13,8 @@ const {
   monochromeIconEnabled,
   showIconsInRecentConversationTrayEnabled,
   trayIconRedDotEnabled,
-  taskbarFlashEnabled
+  taskbarFlashEnabled,
+  spellCheckEnabled
 } = settings;
 
 export const settingsMenu: MenuItemConstructorOptions = {
@@ -110,6 +111,12 @@ export const settingsMenu: MenuItemConstructorOptions = {
         taskbarFlashEnabled.next(item.checked);
       }
     },
+    {
+      id: "spellCheckEnabledMenuItem",
+      label: "Enable Spell Checking",
+      type: "checkbox",
+      checked: spellCheckEnabled.value,
+      click: (item) => { spellCheckEnabled.next(item.checked); }    },
     separator,
     {
       id: "checkForUpdateOnLaunchEnabledMenuItem",

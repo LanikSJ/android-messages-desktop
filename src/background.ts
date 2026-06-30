@@ -11,8 +11,15 @@ import { Conversation, TrayManager } from "./helpers/trayManager";
 import { popupContextMenu } from "./menu/contextMenu";
 import fs from "fs";
 
-const { autoHideMenuEnabled, trayEnabled, savedWindowSize, savedWindowPosition, checkForUpdateOnLaunchEnabled, taskbarFlashEnabled } =
-  settings;
+const {
+  autoHideMenuEnabled,
+  trayEnabled,
+  savedWindowSize,
+  savedWindowPosition,
+  checkForUpdateOnLaunchEnabled,
+  taskbarFlashEnabled,
+  spellCheckEnabled
+} = settings;
 
 let mainWindow: BrowserWindow;
 let trayManager: TrayManager;
@@ -94,6 +101,9 @@ if (gotTheLock) {
     settings.showIconsInRecentConversationTrayEnabled.subscribe(() => {
       trayManager.refreshTrayMenu();
     });
+
+    // Apply the spell-check preference on launch and whenever it is toggled.
+    spellCheckEnabled.subscribe((enabled) => mainWindow.webContents.session.setSpellCheckerEnabled(enabled));
 
     let quitViaContext = false;
     app.on("before-quit", () => {

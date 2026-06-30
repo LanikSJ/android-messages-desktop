@@ -27,7 +27,7 @@ export function recentThreadObserver() {
 
   const data: unknown = conversations.map((conversation, i) => {
     const name = conversation.querySelector("a div.text-content h2.name span")?.textContent;
-    const canvas = conversation.querySelector("a div.avatar-container canvas");
+    const canvas = conversation.querySelector<HTMLCanvasElement>("a div.avatar-container canvas");
 
     const image = canvas?.toDataURL();
 

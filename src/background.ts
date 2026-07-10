@@ -1,5 +1,6 @@
 import "./helpers/portable";
-import { app, Event as ElectronEvent, ipcMain, powerMonitor, shell } from "electron";
+import { app, ipcMain, powerMonitor, shell } from "electron";
+import type { Event as ElectronEvent } from "electron";
 import { BrowserWindow } from "electron/main";
 import path from "path";
 import process from "process";
@@ -103,8 +104,7 @@ if (gotTheLock) {
     });
 
     // Apply the spell-check preference on launch and whenever it is toggled.
-    spellCheckEnabled.subscribe((enabled) => mainWindow.webContents.session.setSpellCheckerEnabled(enabled));
-
+    spellCheckEnabled.subscribe((enabled) => mainWindow?.webContents.session.setSpellCheckerEnabled(enabled));
     let quitViaContext = false;
     app.on("before-quit", () => {
       quitViaContext = true;

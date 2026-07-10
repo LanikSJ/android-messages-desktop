@@ -57,7 +57,10 @@ const preload_init = () => {
 
     const titlebar = document.createElement("div");
     titlebar.id = "amd-titlebar";
-    document.querySelector("mw-app")?.parentNode?.prepend(titlebar);
+    const mwApp = document.querySelector("mw-app");
+    if (mwApp?.parentNode) {
+      mwApp.parentNode.prepend(titlebar);
+    }
   }
 
   const conversationListObserver = new MutationObserver(() => {
@@ -144,8 +147,8 @@ window.Notification = function (title, options) {
     window.interop.flash_main();
     return notification;
   } catch (e) {
-  console.error(e);
-  console.trace();
+    console.error(e);
+    console.trace();
   }
 };
 

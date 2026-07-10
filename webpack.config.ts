@@ -19,9 +19,13 @@ const base: Configuration = {
   module: {
     rules: [
       {
-        test: /\.m?ts$/,
-        exclude: /node_modules/,
-        use: ["ts-loader"]
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        options: {
+          transpileOnly: false,
+          experimentalWatchApi: true,
+        },
+        exclude: /node_modules/
       }
     ]
   },

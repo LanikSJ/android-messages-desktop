@@ -2,7 +2,6 @@
   "name": "android-messages-desktop",
   "description": "Messages for web, as a desktop app",
   "version": "6.1.0",
-  "type": "module",
   "author": {
     "name": "OrangeDrangon",
     "email": "25403517+OrangeDrangon@users.noreply.github.com"

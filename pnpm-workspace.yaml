@@ -5,6 +5,7 @@ packages:
 allowBuilds:
   electron: true
   electron-winstaller: true
+  esbuild: true
 
 minimumReleaseAgeExclude:
   - "@typescript-eslint/eslint-plugin@8.62.1"

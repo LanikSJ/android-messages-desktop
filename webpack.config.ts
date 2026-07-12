@@ -4,6 +4,7 @@ import process from "process";
 import path from "path";
 import { fileURLToPath } from "url";
 import { merge } from "webpack-merge";
+import { EsbuildPlugin } from "esbuild-loader";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,17 +21,23 @@ const base: Configuration = {
     rules: [
       {
         test: /\.ts$/,
-        loader: 'ts-loader',
-        options: {
-          transpileOnly: false,
-          experimentalWatchApi: true,
-        },
-        exclude: /node_modules/
-      }
-    ]
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "esbuild-loader",
+            options: {
+              target: "es2020",
+            },
+          },
+        ],
+      },
+    ],
   },
   resolve: {
     extensions: [".mts", ".ts", ".js"]
+  },
+  optimization: {
+    minimizer: [new EsbuildPlugin({ target: "es2020" })],
   },
   watch: false
 };

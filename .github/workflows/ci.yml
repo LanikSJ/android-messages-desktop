@@ -59,6 +59,9 @@ jobs:
           persist-credentials: false
           fetch-depth: 1
 
+      - name: Clean Stale pnpm Cache
+        run: rm -rf ~/setup-pnpm
+
       - name: Setup pnpm
         uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
         with:

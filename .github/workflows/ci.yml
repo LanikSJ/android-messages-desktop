@@ -59,9 +59,6 @@ jobs:
           persist-credentials: false
           fetch-depth: 1
 
-      - name: Clean Stale pnpm Cache
-        run: rm -rf ~/setup-pnpm
-
       - name: Setup pnpm
         run: npm install -g pnpm@${{ env.PNPM_VERSION }}
 

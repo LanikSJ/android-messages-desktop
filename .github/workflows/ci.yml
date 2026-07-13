@@ -75,7 +75,9 @@ jobs:
           sudo apt-get install --no-install-recommends -y libopenjp2-tools rpm libarchive-tools
 
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          pnpm clean --lockfile
+          pnpm install --no-frozen-lockfile
 
       - name: Build Packages
         run: pnpm run dist --publish never

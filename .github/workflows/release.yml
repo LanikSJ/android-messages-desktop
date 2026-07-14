@@ -55,7 +55,7 @@ jobs:
       - name: Setup pnpm
         run: |
           corepack enable
-          corepack prepare pnpm@${{ env.PNPM_VERSION }} --activate
+          corepack prepare pnpm@${{ env.PNPM_VERSION }} --activate && pnpm -v
 
       - name: Install Linux Dependencies
         if: runner.os == 'Linux'

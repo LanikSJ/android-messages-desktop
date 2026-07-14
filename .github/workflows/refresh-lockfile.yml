@@ -41,7 +41,8 @@ jobs:
       - name: Setup pnpm
         run: |
           corepack enable
-          corepack prepare pnpm@${{ env.PNPM_VERSION }} --activate && pnpm -v
+          corepack prepare pnpm@${{ env.PNPM_VERSION }} --activate
+          echo "pnpm version: $(pnpm -v)"
 
       - name: Refresh Lockfile
         run: |

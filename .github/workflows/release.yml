@@ -5,9 +5,9 @@ on:
     tags:
       - "[0-9]+.[0-9]+.[0-9]+"
     paths:
-      - .github/workflows/ci.yml
+      - .github/workflows/release.yml
       - src/**
-      - electron-builder.js
+      - electron-builder.config.js
       - package.json
       - pnpm-lock.yaml
       - pnpm-workspace.yaml

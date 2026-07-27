@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@types/node": "26.1.1",
+    "@types/node": "26.1.2",
     "@types/webpack": "^5.28.0",
     "@types/webpack-node-externals": "^3.0.4",
     "@typescript-eslint/eslint-plugin": "^8.65.0",
@@ -53,7 +53,7 @@
     "prettier": "^3.9.6",
     "typescript": "^7.0.2",
     "typescript-eslint": "^8.65.0",
-    "webpack": "^5.109.0",
+    "webpack": "^5.109.1",
     "webpack-cli": "^7.1.0",
     "webpack-merge": "^6.0.1",
     "webpack-node-externals": "^3.0.0"

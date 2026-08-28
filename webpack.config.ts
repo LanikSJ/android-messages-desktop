@@ -37,7 +37,11 @@ const base: Configuration = {
     extensions: [".mts", ".ts", ".js"]
   },
   optimization: {
-    minimizer: [new EsbuildPlugin({ target: "es2020" })],
+    // `minify: true` must be explicit: since webpack 5.110 `optimization.minimize`
+    // is an object (default minimizer options), not a boolean, and esbuild-loader
+    // copies that value into esbuild's `minify` option, which rejects non-booleans.
+    // Setting it here keeps the build working across webpack 5.x versions.
+    minimizer: [new EsbuildPlugin({ target: "es2020", minify: true })],
   },
   watch: false
 };

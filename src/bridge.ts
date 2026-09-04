@@ -156,3 +156,11 @@ window.Notification.permission = "granted";
 window.Notification.requestPermission = async () => "granted";
 `);
 contextBridge.exposeInMainWorld("module", { exports: null });
+
+window.addEventListener("online", () => {
+  ipcRenderer.send("network-online");
+});
+
+window.addEventListener("offline", () => {
+  ipcRenderer.send("network-offline");
+});

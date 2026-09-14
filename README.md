@@ -19,6 +19,7 @@ Inspired by:
 - [🐧 Install on Archlinux via AUR](#-install-on-archlinux-via-aur)
 - [🍏 Install on MacOS via Homebrew](#-install-on-macos-via-homebrew)
 - [🪟 Install on Windows via Scoop](#-install-on-windows-via-scoop)
+- [🪟 Portable Mode (Windows)](#-portable-mode-windows)
 - [🤝 Contributions](#-contributions)
 - [💻 Developer Environment](#-developer-environment)
 - [📄 License](#-license)
@@ -39,7 +40,7 @@ Download your build from the [releases](https://github.com/LanikSJ/android-messa
 
 `scoop bucket add extras && scoop install android-messages`
 
-# Portable Mode (Windows)
+## 🪟 Portable Mode (Windows)
 
 To run the application in portable mode:
 
@@ -47,7 +48,7 @@ To run the application in portable mode:
 2. Create an empty file named `portable.txt` in the same folder as the executable.
 3. Launch the app. A `data` folder will be automatically created to store your app data and settings in the same folder as the executable.
 
-# Contributions
+## 🤝 Contributions
 
 The code is pretty ugly but getting better every day. Feel free to take a look.
 

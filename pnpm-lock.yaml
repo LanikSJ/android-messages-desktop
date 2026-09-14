@@ -31,8 +31,8 @@ importers:
         specifier: 10.0.1
         version: 10.0.1(eslint@10.10.0(jiti@2.7.0)(supports-color@8.1.1))
       '@types/node':
-        specifier: 26.5.0
-        version: 26.5.0
+        specifier: 26.5.1
+        version: 26.5.1
       '@types/webpack':
         specifier: ^5.28.0
         version: 5.28.5(esbuild@0.28.2)(webpack-cli@7.2.3)
@@ -460,8 +460,8 @@ packages:
   '@types/node@24.13.4':
     resolution: {integrity: sha512-YJ7EqCstVTzIr0fMr7qul/977en+pQHrfmuKIo6Zr9i75Be21dr3MovcfvGtyvi2HAUrRerWps5sMO9I7WaxDw==}
 
-  '@types/node@26.5.0':
-    resolution: {integrity: sha512-dVSGpriSoCgz8WnDNTuSSuSv1PC/ALXihO4ulRZt7Md8k9mlbdin3lGOcDE8SnWOgf513ByWlXd7BK4azmyg/A==}
+  '@types/node@26.5.1':
+    resolution: {integrity: sha512-CzNm2FezW4VR/LjG6yUdiEgLE/rAQ9Slj5gCu/C2VrdcW7I0ahNZ8DRbHT7zOZ6r3ONgd/bsQIeSaoDGrd1C6g==}
 
   '@types/responselike@1.0.3':
     resolution: {integrity: sha512-H/+L+UkTV33uf49PH5pCAUBVPNj2nDBXTN+qS1dOwyyg24l3CcicicCA7ca+HMvJBZcFgl5r8e+RR6elsb4Lyw==}
@@ -2487,7 +2487,7 @@ snapshots:
     dependencies:
       '@types/http-cache-semantics': 4.2.0
       '@types/keyv': 3.1.4
-      '@types/node': 26.5.0
+      '@types/node': 26.5.1
       '@types/responselike': 1.0.3
 
   '@types/debug@4.1.13':
@@ -2500,7 +2500,7 @@ snapshots:
 
   '@types/fs-extra@9.0.13':
     dependencies:
-      '@types/node': 26.5.0
+      '@types/node': 26.5.1
 
   '@types/http-cache-semantics@4.2.0': {}
 
@@ -2508,7 +2508,7 @@ snapshots:
 
   '@types/keyv@3.1.4':
     dependencies:
-      '@types/node': 26.5.0
+      '@types/node': 26.5.1
 
   '@types/ms@2.1.0': {}
 
@@ -2516,17 +2516,17 @@ snapshots:
     dependencies:
       undici-types: 7.18.2
 
-  '@types/node@26.5.0':
+  '@types/node@26.5.1':
     dependencies:
       undici-types: 8.9.0
 
   '@types/responselike@1.0.3':
     dependencies:
-      '@types/node': 26.5.0
+      '@types/node': 26.5.1
 
   '@types/webpack-node-externals@3.0.4(esbuild@0.28.2)(webpack-cli@7.2.3)':
     dependencies:
-      '@types/node': 26.5.0
+      '@types/node': 26.5.1
       webpack: 5.110.3(esbuild@0.28.2)(webpack-cli@7.2.3)
     transitivePeerDependencies:
       - '@minify-html/node'
@@ -2549,7 +2549,7 @@ snapshots:
 
   '@types/webpack@5.28.5(esbuild@0.28.2)(webpack-cli@7.2.3)':
     dependencies:
-      '@types/node': 26.5.0
+      '@types/node': 26.5.1
       tapable: 2.3.3
       webpack: 5.110.3(esbuild@0.28.2)(webpack-cli@7.2.3)
     transitivePeerDependencies:
@@ -3513,7 +3513,7 @@ snapshots:
       es6-error: 4.1.1
       matcher: 3.0.0
       roarr: 2.15.4
-      semver: 7.7.4
+      semver: 7.8.5
       serialize-error: 7.0.1
     optional: true
 
@@ -3649,7 +3649,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 26.5.0
+      '@types/node': 26.5.1
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -3796,11 +3796,11 @@ snapshots:
 
   node-abi@4.35.0:
     dependencies:
-      semver: 7.7.4
+      semver: 7.8.5
 
   node-api-version@0.2.1:
     dependencies:
-      semver: 7.7.4
+      semver: 7.8.5
 
   node-gyp@12.4.0:
     dependencies:
@@ -3809,7 +3809,7 @@ snapshots:
       graceful-fs: 4.2.11
       nopt: 9.0.0
       proc-log: 6.1.0
-      semver: 7.7.4
+      semver: 7.8.5
       tar: 7.5.22
       tinyglobby: 0.2.17
       undici: 6.28.1

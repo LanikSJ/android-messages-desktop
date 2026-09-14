@@ -1,10 +1,6 @@
 {
   "$schema": "https://renovatebot.com",
-  "extends": [
-    "config:best-practices",
-    ":disableRateLimiting",
-    ":disableDependencyDashboard"
-  ],
+  "extends": ["config:best-practices", ":disableRateLimiting", ":disableDependencyDashboard"],
   "packageRules": [
     {
       "matchManagers": ["npm"],

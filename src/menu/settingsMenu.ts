@@ -111,8 +111,7 @@ export const settingsMenu: MenuItemConstructorOptions = {
       label: "Enable Spell Checking",
       type: "checkbox",
       checked: spellCheckEnabled.value,
-      click: (item) => spellCheckEnabled.next(item.checked),
-    },
+      click: (item) => { spellCheckEnabled.next(item.checked); },    },
     separator,
     {
       id: "checkForUpdateOnLaunchEnabledMenuItem",

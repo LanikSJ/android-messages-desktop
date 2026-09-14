@@ -31,10 +31,10 @@ importers:
       "@eslint/js":
         specifier: 10.0.1
         version: 10.0.1(eslint@10.10.0(jiti@2.7.0)(supports-color@8.1.1))
-      '@types/node':
+      "@types/node":
         specifier: 26.5.1
         version: 26.5.1
-      '@types/webpack':
+      "@types/webpack":
         specifier: ^5.28.0
         version: 5.28.5(esbuild@0.28.2)(webpack-cli@7.2.3)
       "@types/webpack-node-externals":
@@ -651,8 +651,8 @@ packages:
   "@types/keyv@3.1.4":
     resolution: { integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg== }
 
-  '@types/node@26.5.1':
-    resolution: {integrity: sha512-CzNm2FezW4VR/LjG6yUdiEgLE/rAQ9Slj5gCu/C2VrdcW7I0ahNZ8DRbHT7zOZ6r3ONgd/bsQIeSaoDGrd1C6g==}
+  "@types/node@26.5.1":
+    resolution: { integrity: sha512-CzNm2FezW4VR/LjG6yUdiEgLE/rAQ9Slj5gCu/C2VrdcW7I0ahNZ8DRbHT7zOZ6r3ONgd/bsQIeSaoDGrd1C6g== }
 
   "@types/node@24.13.3":
     resolution: { integrity: sha512-Dh8vAsV36ig5wa9OX4pXvMc9D3Veibfw2wix0CUwYODLD8nkj9UsLjASr49nPg+2eKzxhBV+v7L8pXvT4e639Q== }
@@ -3062,10 +3062,10 @@ snapshots:
 
   "@types/cacheable-request@6.0.3":
     dependencies:
-      '@types/http-cache-semantics': 4.2.0
-      '@types/keyv': 3.1.4
-      '@types/node': 26.5.1
-      '@types/responselike': 1.0.3
+      "@types/http-cache-semantics": 4.2.0
+      "@types/keyv": 3.1.4
+      "@types/node": 26.5.1
+      "@types/responselike": 1.0.3
 
   "@types/debug@4.1.13":
     dependencies:
@@ -3078,7 +3078,7 @@ snapshots:
 
   "@types/fs-extra@9.0.13":
     dependencies:
-      '@types/node': 26.5.1
+      "@types/node": 26.5.1
 
   "@types/http-cache-semantics@4.2.0": {}
 
@@ -3086,7 +3086,7 @@ snapshots:
 
   "@types/keyv@3.1.4":
     dependencies:
-      '@types/node': 26.5.1
+      "@types/node": 26.5.1
 
   "@types/ms@2.1.0": {}
 
@@ -3095,18 +3095,18 @@ snapshots:
       undici-types: 7.18.2
       undici-types: 7.18.2
 
-  '@types/node@26.5.1':
+  "@types/node@26.5.1":
     dependencies:
       undici-types: 8.9.0
 
   "@types/responselike@1.0.3":
     dependencies:
-      '@types/node': 26.5.1
+      "@types/node": 26.5.1
 
   "@types/webpack-node-externals@3.0.4(esbuild@0.28.2)(webpack-cli@7.2.3)":
   "@types/webpack-node-externals@3.0.4(esbuild@0.28.2)(webpack-cli@7.2.3)":
     dependencies:
-      '@types/node': 26.5.1
+      "@types/node": 26.5.1
       webpack: 5.110.3(esbuild@0.28.2)(webpack-cli@7.2.3)
     transitivePeerDependencies:
       - "@minify-html/node"
@@ -3135,7 +3135,7 @@ snapshots:
   "@types/webpack@5.28.5(esbuild@0.28.2)(webpack-cli@7.2.3)":
   "@types/webpack@5.28.5(esbuild@0.28.2)(webpack-cli@7.2.3)":
     dependencies:
-      '@types/node': 26.5.1
+      "@types/node": 26.5.1
       tapable: 2.3.3
       webpack: 5.110.3(esbuild@0.28.2)(webpack-cli@7.2.3)
     transitivePeerDependencies:
@@ -4437,7 +4437,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 26.5.1
+      "@types/node": 26.5.1
       merge-stream: 2.0.0
       supports-color: 8.1.1
 

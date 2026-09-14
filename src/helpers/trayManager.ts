@@ -1,7 +1,15 @@
 import { app, Menu, MenuItemConstructorOptions, nativeImage, Tray } from "electron";
 import path from "path";
 import { trayMenuTemplate } from "../menu/trayMenu";
-import { INITIAL_ICON_IMAGE, IS_DEV, IS_MAC, IS_WINDOWS, RESOURCES_PATH, TRAY_AVATAR_SIZE, UUID_NAMESPACE } from "./constants";
+import {
+  INITIAL_ICON_IMAGE,
+  IS_DEV,
+  IS_MAC,
+  IS_WINDOWS,
+  RESOURCES_PATH,
+  TRAY_AVATAR_SIZE,
+  UUID_NAMESPACE,
+} from "./constants";
 import { settings } from "./settings";
 import { v5 as uuidv5 } from "uuid";
 import { separator } from "../menu/items/separator";
@@ -71,22 +79,27 @@ export class TrayManager {
   }
 
   public refreshTrayMenu() {
-    const conversationMenuItems: MenuItemConstructorOptions[] = this.recentConversations.map(({ name, image, recentMessage, i }) => {
-      const icon =
-        image != null && image != INITIAL_ICON_IMAGE && showIconsInRecentConversationTrayEnabled.value
-          ? nativeImage.createFromDataURL(image).resize({ width: TRAY_AVATAR_SIZE, height: TRAY_AVATAR_SIZE })
-          : undefined;
+    const conversationMenuItems: MenuItemConstructorOptions[] =
+      this.recentConversations.map(({ name, image, recentMessage, i }) => {
+        const icon =
+          image != null &&
+            image != INITIAL_ICON_IMAGE &&
+            showIconsInRecentConversationTrayEnabled.value
+            ? nativeImage
+              .createFromDataURL(image)
+              .resize({ width: TRAY_AVATAR_SIZE, height: TRAY_AVATAR_SIZE })
+            : undefined;
 
-      return {
-        label: name ?? "Name not Found",
-        sublabel: recentMessage ?? undefined,
-        icon,
-        click: () => {
-          getMainWindow()?.show();
-          getMainWindow()?.webContents.send("focus-conversation", i);
-        }
-      };
-    });
+        return {
+          label: name ?? "Name not Found",
+          sublabel: recentMessage ?? undefined,
+          icon,
+          click: () => {
+            getMainWindow()?.show();
+            getMainWindow()?.webContents.send("focus-conversation", i);
+          }
+        };
+      });
     this.tray?.setContextMenu(Menu.buildFromTemplate([...conversationMenuItems, separator, ...trayMenuTemplate]));
   }
 

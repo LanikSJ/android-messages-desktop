@@ -14,7 +14,7 @@ const {
   showIconsInRecentConversationTrayEnabled,
   trayIconRedDotEnabled,
   taskbarFlashEnabled,
-  spellCheckEnabled
+  spellCheckEnabled,
 } = settings;
 
 export const settingsMenu: MenuItemConstructorOptions = {
@@ -28,12 +28,7 @@ export const settingsMenu: MenuItemConstructorOptions = {
       label: "Auto Hide Menu Bar",
       type: "checkbox",
       checked: autoHideMenuEnabled.value,
-      click: (
-        item: MenuItem,
-        window?: BaseWindow,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        event?: Electron.KeyboardEvent
-      ): void => {
+      click: (item: MenuItem, window?: BaseWindow): void => {
         autoHideMenuEnabled.next(item.checked);
         window?.setMenuBarVisibility(!autoHideMenuEnabled.value);
         window?.setAutoHideMenuBar(autoHideMenuEnabled.value);
@@ -116,7 +111,8 @@ export const settingsMenu: MenuItemConstructorOptions = {
       label: "Enable Spell Checking",
       type: "checkbox",
       checked: spellCheckEnabled.value,
-      click: (item) => { spellCheckEnabled.next(item.checked); }    },
+      click: (item) => spellCheckEnabled.next(item.checked),
+    },
     separator,
     {
       id: "checkForUpdateOnLaunchEnabledMenuItem",

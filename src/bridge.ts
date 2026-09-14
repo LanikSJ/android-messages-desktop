@@ -1,11 +1,22 @@
 import { contextBridge, ipcRenderer, webFrame } from "electron";
 
 import { INITIAL_ICON_IMAGE, IS_MAC } from "./preload/constants_preload";
-import { createRecentThreadObserver, createUnreadObserver, focusFunctions, recentThreadObserver } from "./preload/observers";
+import {
+  createRecentThreadObserver,
+  createUnreadObserver,
+  focusFunctions,
+  recentThreadObserver,
+} from "./preload/observers";
 
 declare global {
   interface Window {
-    interop: unknown;
+    interop: {
+      show_main_window: () => void;
+      flash_main: () => void;
+      should_hide: () => boolean;
+      get_icon: () => Promise<string>;
+      preload_init: () => void;
+    };
   }
 }
 
@@ -51,16 +62,13 @@ const preload_init = () => {
 
     document.body.appendChild(
       Object.assign(document.createElement("style"), {
-        textContent: titlebarStyle
+        textContent: titlebarStyle,
       })
     );
 
     const titlebar = document.createElement("div");
     titlebar.id = "amd-titlebar";
-    const mwApp = document.querySelector("mw-app");
-    if (mwApp?.parentNode) {
-      mwApp.parentNode.prepend(titlebar);
-    }
+    document.querySelector("mw-app")?.parentNode?.prepend(titlebar);
   }
 
   const conversationListObserver = new MutationObserver(() => {
@@ -70,9 +78,14 @@ const preload_init = () => {
 
       // keep trying to get an image that isnt blank until they load
       const interval = setInterval(() => {
-        const conversation = document.body.querySelector("mws-conversation-list-item");
+        const conversation = document.body.querySelector(
+          "mws-conversation-list-item"
+        );
         if (conversation) {
-          const canvas = conversation.querySelector<HTMLCanvasElement>("a div.avatar-container canvas");
+          const canvas = conversation.querySelector(
+            "a div.avatar-container canvas"
+          ) as HTMLCanvasElement | null;
+
           if (canvas != null && canvas.toDataURL() != INITIAL_ICON_IMAGE) {
             recentThreadObserver();
             // refresh for profile image loads after letter loads.
@@ -93,7 +106,7 @@ const preload_init = () => {
   conversationListObserver.observe(document.body, {
     attributes: false,
     subtree: true,
-    childList: true
+    childList: true,
   });
 };
 

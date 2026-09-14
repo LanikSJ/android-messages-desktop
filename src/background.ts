@@ -1,6 +1,11 @@
 import "./helpers/portable";
-import { app, ipcMain, powerMonitor, shell } from "electron";
-import type { Event as ElectronEvent } from "electron";
+import {
+  app,
+  Event as ElectronEvent,
+  ipcMain,
+  powerMonitor,
+  shell,
+} from "electron";
 import { BrowserWindow } from "electron/main";
 import path from "path";
 import process from "process";
@@ -19,7 +24,7 @@ const {
   savedWindowPosition,
   checkForUpdateOnLaunchEnabled,
   taskbarFlashEnabled,
-  spellCheckEnabled
+  spellCheckEnabled,
 } = settings;
 
 let mainWindow: BrowserWindow;
@@ -82,8 +87,8 @@ if (gotTheLock) {
         nodeIntegration: false,
         sandbox: false,
         partition: "persist:main",
-        backgroundThrottling: false
-      }
+        backgroundThrottling: false,
+      },
     });
 
     process.env.MAIN_WINDOW_ID = mainWindow.id.toString();
@@ -100,9 +105,14 @@ if (gotTheLock) {
     mainWindow.loadURL("https://messages.google.com/web/");
 
     trayManager.startIfEnabled();
-    settings.showIconsInRecentConversationTrayEnabled.subscribe(() => {
-      trayManager.refreshTrayMenu();
-    });
+    settings.showIconsInRecentConversationTrayEnabled.subscribe(() =>
+      trayManager.refreshTrayMenu()
+    );
+
+    // Apply the spell-check preference on launch and whenever it is toggled.
+    spellCheckEnabled.subscribe((enabled) =>
+      mainWindow.webContents.session.setSpellCheckerEnabled(enabled)
+    );
 
     // Apply the spell-check preference on launch and whenever it is toggled.
     spellCheckEnabled.subscribe((enabled) => mainWindow?.webContents.session.setSpellCheckerEnabled(enabled));
@@ -189,7 +199,11 @@ if (gotTheLock) {
           return;
         }
         const currentUrl = mainWindow.webContents.getURL();
-        if (!currentUrl || currentUrl.startsWith("chrome-error://") || currentUrl === "about:blank") {
+        if (
+          !currentUrl ||
+          currentUrl.startsWith("chrome-error://") ||
+          currentUrl === "about:blank"
+        ) {
           mainWindow.loadURL("https://messages.google.com/web/");
         } else {
           mainWindow.webContents.reload();
@@ -202,100 +216,103 @@ if (gotTheLock) {
       hasFailedLoad = false;
     });
 
-    mainWindow.webContents.on("did-fail-load", (_event, errorCode, errorDescription, validatedURL) => {
-      console.log("did-fail-load", {
-        errorCode,
-        errorDescription,
-        validatedURL
-      });
-      // -3 is ERR_ABORTED (navigation superseded/cancelled). For all other network failures, retry.
-      if (errorCode !== -3 && !mainWindow.isDestroyed()) {
-        hasFailedLoad = true;
-        reloadMainWindow(3000);
+    mainWindow.webContents.on(
+      "did-fail-load",
+      (_event, errorCode, errorDescription, validatedURL) => {
+        console.log("did-fail-load", {
+          errorCode,
+          errorDescription,
+          validatedURL,
+        });
+        // -3 is ERR_ABORTED (navigation superseded/cancelled). For all other network failures, retry.
+        if (errorCode !== -3 && !mainWindow.isDestroyed()) {
+          hasFailedLoad = true;
+          reloadMainWindow(3000);
+        }
       }
     });
 
-    mainWindow.webContents.on("did-redirect-navigation", (_event, url, isInPlace, isMainFrame) => {
-      console.log("did-redirect-navigation", {
-        url,
-        isInPlace,
-        isMainFrame
-      });
-    });
-
-    mainWindow.webContents.on("console-message", (_event, level, message) => {
-      console.log("renderer console:", level, message);
-    });
-
-    mainWindow.webContents.on("context-menu", popupContextMenu);
-
-    // The Google Messages web app frequently ends up on a blank white screen or
-    // loses its connection to the phone after the machine resumes from suspend (#505, #605).
-    // Allow a short delay for network interfaces (Wi-Fi/DHCP) to re-associate, and reload.
-    powerMonitor.on("resume", () => {
-      if (!mainWindow.isDestroyed()) {
-        pendingResume = true;
-        reloadMainWindow(2500);
-      }
-    });
-
-    // The OS can also kill the renderer outright while suspended (memory
-    // reclaim), which leaves the same blank screen. Reload to recover unless it
-    // exited cleanly (e.g. during shutdown).
-    mainWindow.webContents.on("render-process-gone", (_event, details) => {
-      console.log("render-process-gone", details);
-      if (details.reason !== "clean-exit" && !mainWindow.isDestroyed()) {
-        reloadMainWindow(1000);
-      }
-    });
-
-    ipcMain.on("network-online", () => {
-      const wasOffline = isNetworkOffline;
-      isNetworkOffline = false;
-      if (pendingResume || hasFailedLoad || wasOffline) {
-        reloadMainWindow(1000);
-      }
-    });
-
-    ipcMain.on("network-offline", () => {
-      isNetworkOffline = true;
+  mainWindow.webContents.on("did-redirect-navigation", (_event, url, isInPlace, isMainFrame) => {
+    console.log("did-redirect-navigation", {
+      url,
+      isInPlace,
+      isMainFrame
     });
   });
 
-  ipcMain.on("should-hide-notification-content", (event) => {
-    event.returnValue = settings.hideNotificationContentEnabled.value;
+  mainWindow.webContents.on("console-message", (_event, level, message) => {
+    console.log("renderer console:", level, message);
   });
 
-  ipcMain.on("show-main-window", () => {
-    mainWindow.show();
-    mainWindow.focus();
+  mainWindow.webContents.on("context-menu", popupContextMenu);
+
+  // The Google Messages web app frequently ends up on a blank white screen or
+  // loses its connection to the phone after the machine resumes from suspend (#505, #605).
+  // Allow a short delay for network interfaces (Wi-Fi/DHCP) to re-associate, and reload.
+  powerMonitor.on("resume", () => {
+    if (!mainWindow.isDestroyed()) {
+      pendingResume = true;
+      reloadMainWindow(2500);
+    }
+  });
+
+  // The OS can also kill the renderer outright while suspended (memory
+  // reclaim), which leaves the same blank screen. Reload to recover unless it
+  // exited cleanly (e.g. during shutdown).
+  mainWindow.webContents.on("render-process-gone", (_event, details) => {
+    console.log("render-process-gone", details);
+    if (details.reason !== "clean-exit" && !mainWindow.isDestroyed()) {
+      reloadMainWindow(1000);
+    }
+  });
+
+  ipcMain.on("network-online", () => {
+    const wasOffline = isNetworkOffline;
+    isNetworkOffline = false;
+    if (pendingResume || hasFailedLoad || wasOffline) {
+      reloadMainWindow(1000);
+    }
+  });
+
+  ipcMain.on("network-offline", () => {
+    isNetworkOffline = true;
+  });
+});
+
+ipcMain.on("should-hide-notification-content", (event) => {
+  event.returnValue = settings.hideNotificationContentEnabled.value;
+});
+
+ipcMain.on("show-main-window", () => {
+  mainWindow.show();
+  mainWindow.focus();
+
+  if (IS_MAC) {
+    app.dock?.setBadge("");
+  }
+});
+
+ipcMain.on("flash-main-window-if-not-focused", () => {
+  if (!mainWindow.isFocused() && taskbarFlashEnabled.value) {
+    mainWindow.flashFrame(true);
 
     if (IS_MAC) {
-      app.dock?.setBadge("");
+      app.dock?.setBadge("•");
     }
-  });
+  }
+});
 
-  ipcMain.on("flash-main-window-if-not-focused", () => {
-    if (!mainWindow.isFocused() && taskbarFlashEnabled.value) {
-      mainWindow.flashFrame(true);
+ipcMain.on("set-unread-status", (_event, unreadStatus: boolean) => {
+  trayManager.setUnread(unreadStatus);
+});
 
-      if (IS_MAC) {
-        app.dock?.setBadge("•");
-      }
-    }
-  });
+ipcMain.on("set-recent-conversations", (_event, data: Conversation[]) => {
+  trayManager.setRecentConversations(data);
+});
 
-  ipcMain.on("set-unread-status", (_event, unreadStatus: boolean) => {
-    trayManager.setUnread(unreadStatus);
-  });
+ipcMain.handle("get-icon", () => {
+  const bitmap = fs.readFileSync(path.resolve(RESOURCES_PATH, "icons", "64x64.png"));
 
-  ipcMain.on("set-recent-conversations", (_event, data: Conversation[]) => {
-    trayManager.setRecentConversations(data);
-  });
-
-  ipcMain.handle("get-icon", () => {
-    const bitmap = fs.readFileSync(path.resolve(RESOURCES_PATH, "icons", "64x64.png"));
-
-    return Buffer.from(bitmap).toString("base64");
-  });
+  return Buffer.from(bitmap).toString("base64");
+});
 }

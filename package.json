@@ -2,6 +2,7 @@
   "name": "android-messages-desktop",
   "description": "Messages for web, as a desktop app",
   "version": "6.1.1",
+  "version": "6.1.1",
   "author": {
     "name": "OrangeDrangon",
     "email": "25403517+OrangeDrangon@users.noreply.github.com"
@@ -18,17 +19,21 @@
   },
   "main": "app/background.js",
   "desktopName": "pw.kmr.amd",
+  "desktopName": "pw.kmr.amd",
   "scripts": {
+    "dev": "pnpm run build:dev && NODE_ENV=development electron --enable-source-maps ./app/background.js",
     "dev": "pnpm run build:dev && NODE_ENV=development electron --enable-source-maps ./app/background.js",
     "dist": "pnpm run build && pnpm run package",
     "build": "webpack --mode=production",
     "build:dev": "webpack --mode=development",
     "icons": "png2icons resources/icons/1024x1024.png resources/icon -all -i",
     "lint": "prettier --write . && eslint --fix ./src",
+    "lint": "prettier --write . && eslint --fix ./src",
     "package": "electron-builder --config electron-builder.config.js"
   },
   "dependencies": {
     "about-window": "1.15.2",
+    "electron-updater": "6.8.9",
     "electron-updater": "6.8.9",
     "fs-jetpack": "^5.1.0",
     "glob": "^13.0.6",

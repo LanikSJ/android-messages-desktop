@@ -78,7 +78,7 @@ const defaultSettings: JsonSettings = {
   showIconsInRecentConversationTrayEnabled: true,
   taskbarFlashEnabled: true,
   trayIconRedDotEnabled: true,
-  spellCheckEnabled: true
+  spellCheckEnabled: true,
 };
 
 // create default settings file if it doesnt exist

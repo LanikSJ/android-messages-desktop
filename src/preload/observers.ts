@@ -43,12 +43,6 @@ export function recentThreadObserver() {
 
     const snippet = conversation.querySelector("a div.text-content div.snippet-text mws-conversation-snippet span")?.textContent?.trim();
 
-    const snippet = conversation
-      .querySelector(
-        "a div.text-content div.snippet-text mws-conversation-snippet span"
-      )
-      ?.textContent?.trim();
-
     const recentMessage =
       snippet && snippet.length > RECENT_CONVERSATION_SNIPPET_LENGTH
         ? `${snippet.slice(0, RECENT_CONVERSATION_SNIPPET_LENGTH).trimEnd()}…`

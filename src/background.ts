@@ -230,89 +230,89 @@ if (gotTheLock) {
           reloadMainWindow(3000);
         }
       }
+    );
+
+    mainWindow.webContents.on("did-redirect-navigation", (_event, url, isInPlace, isMainFrame) => {
+      console.log("did-redirect-navigation", {
+        url,
+        isInPlace,
+        isMainFrame
+      });
     });
 
-  mainWindow.webContents.on("did-redirect-navigation", (_event, url, isInPlace, isMainFrame) => {
-    console.log("did-redirect-navigation", {
-      url,
-      isInPlace,
-      isMainFrame
+    mainWindow.webContents.on("console-message", (_event, level, message) => {
+      console.log("renderer console:", level, message);
+    });
+
+    mainWindow.webContents.on("context-menu", popupContextMenu);
+
+    // The Google Messages web app frequently ends up on a blank white screen or
+    // loses its connection to the phone after the machine resumes from suspend (#505, #605).
+    // Allow a short delay for network interfaces (Wi-Fi/DHCP) to re-associate, and reload.
+    powerMonitor.on("resume", () => {
+      if (!mainWindow.isDestroyed()) {
+        pendingResume = true;
+        reloadMainWindow(2500);
+      }
+    });
+
+    // The OS can also kill the renderer outright while suspended (memory
+    // reclaim), which leaves the same blank screen. Reload to recover unless it
+    // exited cleanly (e.g. during shutdown).
+    mainWindow.webContents.on("render-process-gone", (_event, details) => {
+      console.log("render-process-gone", details);
+      if (details.reason !== "clean-exit" && !mainWindow.isDestroyed()) {
+        reloadMainWindow(1000);
+      }
+    });
+
+    ipcMain.on("network-online", () => {
+      const wasOffline = isNetworkOffline;
+      isNetworkOffline = false;
+      if (pendingResume || hasFailedLoad || wasOffline) {
+        reloadMainWindow(1000);
+      }
+    });
+
+    ipcMain.on("network-offline", () => {
+      isNetworkOffline = true;
     });
   });
 
-  mainWindow.webContents.on("console-message", (_event, level, message) => {
-    console.log("renderer console:", level, message);
+  ipcMain.on("should-hide-notification-content", (event) => {
+    event.returnValue = settings.hideNotificationContentEnabled.value;
   });
 
-  mainWindow.webContents.on("context-menu", popupContextMenu);
-
-  // The Google Messages web app frequently ends up on a blank white screen or
-  // loses its connection to the phone after the machine resumes from suspend (#505, #605).
-  // Allow a short delay for network interfaces (Wi-Fi/DHCP) to re-associate, and reload.
-  powerMonitor.on("resume", () => {
-    if (!mainWindow.isDestroyed()) {
-      pendingResume = true;
-      reloadMainWindow(2500);
-    }
-  });
-
-  // The OS can also kill the renderer outright while suspended (memory
-  // reclaim), which leaves the same blank screen. Reload to recover unless it
-  // exited cleanly (e.g. during shutdown).
-  mainWindow.webContents.on("render-process-gone", (_event, details) => {
-    console.log("render-process-gone", details);
-    if (details.reason !== "clean-exit" && !mainWindow.isDestroyed()) {
-      reloadMainWindow(1000);
-    }
-  });
-
-  ipcMain.on("network-online", () => {
-    const wasOffline = isNetworkOffline;
-    isNetworkOffline = false;
-    if (pendingResume || hasFailedLoad || wasOffline) {
-      reloadMainWindow(1000);
-    }
-  });
-
-  ipcMain.on("network-offline", () => {
-    isNetworkOffline = true;
-  });
-});
-
-ipcMain.on("should-hide-notification-content", (event) => {
-  event.returnValue = settings.hideNotificationContentEnabled.value;
-});
-
-ipcMain.on("show-main-window", () => {
-  mainWindow.show();
-  mainWindow.focus();
-
-  if (IS_MAC) {
-    app.dock?.setBadge("");
-  }
-});
-
-ipcMain.on("flash-main-window-if-not-focused", () => {
-  if (!mainWindow.isFocused() && taskbarFlashEnabled.value) {
-    mainWindow.flashFrame(true);
+  ipcMain.on("show-main-window", () => {
+    mainWindow.show();
+    mainWindow.focus();
 
     if (IS_MAC) {
-      app.dock?.setBadge("•");
+      app.dock?.setBadge("");
     }
-  }
-});
+  });
 
-ipcMain.on("set-unread-status", (_event, unreadStatus: boolean) => {
-  trayManager.setUnread(unreadStatus);
-});
+  ipcMain.on("flash-main-window-if-not-focused", () => {
+    if (!mainWindow.isFocused() && taskbarFlashEnabled.value) {
+      mainWindow.flashFrame(true);
 
-ipcMain.on("set-recent-conversations", (_event, data: Conversation[]) => {
-  trayManager.setRecentConversations(data);
-});
+      if (IS_MAC) {
+        app.dock?.setBadge("•");
+      }
+    }
+  });
 
-ipcMain.handle("get-icon", () => {
-  const bitmap = fs.readFileSync(path.resolve(RESOURCES_PATH, "icons", "64x64.png"));
+  ipcMain.on("set-unread-status", (_event, unreadStatus: boolean) => {
+    trayManager.setUnread(unreadStatus);
+  });
 
-  return Buffer.from(bitmap).toString("base64");
-});
+  ipcMain.on("set-recent-conversations", (_event, data: Conversation[]) => {
+    trayManager.setRecentConversations(data);
+  });
+
+  ipcMain.handle("get-icon", () => {
+    const bitmap = fs.readFileSync(path.resolve(RESOURCES_PATH, "icons", "64x64.png"));
+
+    return Buffer.from(bitmap).toString("base64");
+  });
 }

@@ -3,7 +3,16 @@ name: release
 on:
   push:
     tags:
-      - "v*"
+      - "[0-9]+.[0-9]+.[0-9]+"
+    paths:
+      - .github/workflows/release.yml
+      - src/**
+      - electron-builder.config.js
+      - package.json
+      - pnpm-lock.yaml
+      - pnpm-workspace.yaml
+      - tsconfig.json
+      - webpack.config.ts
   workflow_dispatch:
 
 permissions:
@@ -15,9 +24,9 @@ concurrency:
 
 jobs:
   publish:
-    name: Publish (${{ matrix.os }})
+    name: Publish Packages (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    environment: release
+    # environment: release
 
     strategy:
       fail-fast: false
@@ -28,8 +37,8 @@ jobs:
           - ubuntu-latest
 
     env:
-      NODE_VERSION: 24
-      PNPM_VERSION: 10
+      NODE_VERSION: 26
+      PNPM_VERSION: 11
 
     steps:
       - name: Checkout
@@ -38,19 +47,18 @@ jobs:
           persist-credentials: false
           fetch-depth: 1
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6
-        with:
-          version: ${{ env.PNPM_VERSION }}
-          run_install: false
-
       - name: Setup Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: pnpm
 
-      - name: Install Linux dependencies
+      - name: Setup pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@${{ env.PNPM_VERSION }} --activate
+          echo "pnpm version: $(pnpm -v)"
+
+      - name: Install Linux Dependencies
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update -y
@@ -59,16 +67,18 @@ jobs:
             rpm \
             libarchive-tools
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Install Dependencies
+        run: |
+          pnpm clean --lockfile
+          pnpm install --no-frozen-lockfile
 
-      - name: Publish
+      - name: Publish Packages
         run: pnpm run dist --publish always
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload build
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+      - name: Upload Build and Package
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: ${{ matrix.os }}-${{ env.NODE_VERSION }}
           path: ./dist

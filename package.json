@@ -7,14 +7,14 @@
     "email": "25403517+OrangeDrangon@users.noreply.github.com"
   },
   "license": "MIT",
-  "copyright": "Copyright 2020 Kyle Rosenberg",
-  "homepage": "https://github.com/OrangeDrangon/android-messages-desktop",
+  "copyright": "Copyright 2025 Kyle Rosenberg",
+  "homepage": "https://github.com/LanikSJ/android-messages-desktop",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OrangeDrangon/android-messages-desktop.git"
+    "url": "git+https://github.com/LanikSJ/android-messages-desktop.git"
   },
   "bugs": {
-    "url": "https://github.com/OrangeDrangon/android-messages-desktop/issues"
+    "url": "https://github.com/LanikSJ/android-messages-desktop/issues"
   },
   "main": "app/background.js",
   "desktopName": "pw.kmr.amd",
@@ -31,29 +31,32 @@
     "about-window": "1.15.2",
     "electron-updater": "6.8.9",
     "fs-jetpack": "^5.1.0",
+    "glob": "^13.0.6",
     "rxjs": "^7.8.2",
-    "uuid": "^14.0.1"
+    "uuid": "^14.0.2"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@types/node": "25.9.5",
-    "@types/webpack": "5.28.5",
-    "@types/webpack-node-externals": "3.0.4",
-    "@typescript-eslint/eslint-plugin": "8.68.0",
-    "@typescript-eslint/parser": "8.68.0",
-    "electron": "41.10.7",
-    "electron-builder": "26.15.3",
-    "esbuild": "0.28.2",
-    "esbuild-loader": "4.5.0",
-    "eslint": "10.9.1",
-    "eslint-config-prettier": "10.1.8",
-    "png2icons": "2.0.1",
-    "prettier": "3.9.6",
-    "typescript": "7.0.2",
-    "typescript-eslint": "8.68.0",
-    "webpack": "5.110.1",
-    "webpack-cli": "7.2.3",
-    "webpack-merge": "6.0.1",
-    "webpack-node-externals": "3.0.0"
+    "@types/node": "26.5.1",
+    "@types/webpack": "^5.28.0",
+    "@types/webpack-node-externals": "^3.0.4",
+    "@typescript-eslint/eslint-plugin": "^8.70.0",
+    "@typescript-eslint/parser": "^8.70.0",
+    "brace-expansion": "^5.0.8",
+    "electron": "^44.3.0",
+    "electron-builder": "^26.15.3",
+    "esbuild": "^0.28.1",
+    "esbuild-loader": "^4.5.0",
+    "eslint": "^10.9.1",
+    "eslint-config-prettier": "^10.1.8",
+    "png2icons": "^2.0.1",
+    "prettier": "^3.9.6",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2",
+    "typescript-eslint": "^8.70.0",
+    "webpack": "^5.110.3",
+    "webpack-cli": "^7.2.2",
+    "webpack-merge": "^6.0.1",
+    "webpack-node-externals": "^3.0.0"
   }
 }

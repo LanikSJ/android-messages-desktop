@@ -7,17 +7,17 @@ export const devMenuTemplate: MenuItemConstructorOptions = {
     {
       label: "Reload",
       accelerator: "CmdOrCtrl+R",
-      click: (): void => getMainWindow()?.webContents.reloadIgnoringCache(),
+      click: (): void => getMainWindow()?.webContents.reloadIgnoringCache()
     },
     {
       label: "Development Tools",
       accelerator: "CmdOrCtrl+Shift+I",
-      click: (): void => getMainWindow()?.webContents.toggleDevTools(),
+      click: (): void => getMainWindow()?.webContents.toggleDevTools()
     },
     {
       label: "Quit",
       accelerator: "CmdOrCtrl+Q",
-      click: (): void => app.quit(),
-    },
-  ],
+      click: (): void => app.quit()
+    }
+  ]
 };

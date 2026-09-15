@@ -70,6 +70,7 @@ if (gotTheLock) {
     const { width, height } = savedWindowSize.value;
     const { x, y } = savedWindowPosition.value ?? {};
 
+    console.log("app.getAppPath()", app.getAppPath());
     mainWindow = new BrowserWindow({
       width,
       height,
@@ -78,14 +79,10 @@ if (gotTheLock) {
       autoHideMenuBar: autoHideMenuEnabled.value,
       title: "Android Messages",
       show: false,
-      icon: IS_LINUX
-        ? path.resolve(RESOURCES_PATH, "icons", "128x128.png")
-        : undefined,
+      icon: IS_LINUX ? path.resolve(RESOURCES_PATH, "icons", "128x128.png") : undefined,
       titleBarStyle: IS_MAC ? "hiddenInset" : "default",
       webPreferences: {
-        preload: IS_DEV
-          ? path.resolve(app.getAppPath(), "bridge.js")
-          : path.resolve(app.getAppPath(), "app", "bridge.js"),
+        preload: IS_DEV ? path.resolve(app.getAppPath(), "bridge.js") : path.resolve(app.getAppPath(), "app", "bridge.js"),
         contextIsolation: true,
         nodeIntegration: false,
         sandbox: false,
@@ -117,6 +114,8 @@ if (gotTheLock) {
       mainWindow.webContents.session.setSpellCheckerEnabled(enabled)
     );
 
+    // Apply the spell-check preference on launch and whenever it is toggled.
+    spellCheckEnabled.subscribe((enabled) => mainWindow?.webContents.session.setSpellCheckerEnabled(enabled));
     let quitViaContext = false;
     app.on("before-quit", () => {
       quitViaContext = true;
@@ -142,8 +141,7 @@ if (gotTheLock) {
       if (!shouldExitOnMainWindowClosed()) {
         event.preventDefault();
         mainWindow.hide();
-        trayManager?.showMinimizeToTrayWarning();
-
+        trayManager.showMinimizeToTrayWarning();
         if (IS_MAC) {
           app.dock?.hide();
         }
@@ -172,15 +170,13 @@ if (gotTheLock) {
             autoHideMenuBar: true,
             titleBarStyle: "default",
             webPreferences: {
-              preload: IS_DEV
-                ? path.resolve(app.getAppPath(), "bridge.js")
-                : path.resolve(app.getAppPath(), "app", "bridge.js"),
+              preload: IS_DEV ? path.resolve(app.getAppPath(), "bridge.js") : path.resolve(app.getAppPath(), "app", "bridge.js"),
               contextIsolation: true,
               nodeIntegration: false,
               sandbox: false,
-              partition: "persist:main",
-            },
-          },
+              partition: "persist:main"
+            }
+          }
         };
       }
 
@@ -236,16 +232,13 @@ if (gotTheLock) {
       }
     );
 
-    mainWindow.webContents.on(
-      "did-redirect-navigation",
-      (_event, url, isInPlace, isMainFrame) => {
-        console.log("did-redirect-navigation", {
-          url,
-          isInPlace,
-          isMainFrame,
-        });
-      }
-    );
+    mainWindow.webContents.on("did-redirect-navigation", (_event, url, isInPlace, isMainFrame) => {
+      console.log("did-redirect-navigation", {
+        url,
+        isInPlace,
+        isMainFrame
+      });
+    });
 
     mainWindow.webContents.on("console-message", (_event, level, message) => {
       console.log("renderer console:", level, message);
@@ -318,9 +311,7 @@ if (gotTheLock) {
   });
 
   ipcMain.handle("get-icon", () => {
-    const bitmap = fs.readFileSync(
-      path.resolve(RESOURCES_PATH, "icons", "64x64.png")
-    );
+    const bitmap = fs.readFileSync(path.resolve(RESOURCES_PATH, "icons", "64x64.png"));
 
     return Buffer.from(bitmap).toString("base64");
   });

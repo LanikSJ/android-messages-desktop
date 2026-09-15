@@ -9,7 +9,7 @@ export const fileMenuTemplate: MenuItemConstructorOptions = {
     separator,
     {
       label: "Quit Android Messages",
-      click: (): void => app.quit(),
-    },
-  ],
+      click: (): void => app.quit()
+    }
+  ]
 };

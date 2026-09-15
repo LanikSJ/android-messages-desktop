@@ -7,11 +7,8 @@ import { separator } from "./items/separator";
 const submenu: MenuItemConstructorOptions[] = [
   {
     label: "Learn More",
-    click: async (): Promise<void> =>
-      await shell.openExternal(
-        "https://github.com/orangedrangon/android-messages-desktop/"
-      ),
-  },
+    click: async (): Promise<void> => await shell.openExternal("https://github.com/orangedrangon/android-messages-desktop/")
+  }
 ];
 
 if (IS_WINDOWS) {
@@ -26,5 +23,5 @@ if (!IS_MAC) {
 
 export const helpMenuTemplate: MenuItemConstructorOptions = {
   label: "&Help",
-  submenu,
+  submenu
 };

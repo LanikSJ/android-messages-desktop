@@ -19,13 +19,13 @@ export const trayMenuTemplate: MenuItemConstructorOptions[] = [
           mainWindow.show();
         }
       }
-    },
+    }
   },
   separator,
   {
     label: "Quit Android Messages",
     click: (): void => {
       app.quit();
-    },
-  },
+    }
+  }
 ];

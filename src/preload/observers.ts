@@ -26,14 +26,10 @@ export function createUnreadObserver(): MutationObserver {
   return observer;
 }
 
-export const focusFunctions = new Array(RECENT_CONVERSATION_TRAY_COUNT)
-  .fill(0)
-  .map(() => () => void 1);
+export const focusFunctions = new Array(RECENT_CONVERSATION_TRAY_COUNT).fill(0).map(() => () => void 1);
 
 export function recentThreadObserver() {
-  const conversations = Array.from(
-    document.body.querySelectorAll("mws-conversation-list-item")
-  ).slice(0, RECENT_CONVERSATION_TRAY_COUNT);
+  const conversations = Array.from(document.body.querySelectorAll("mws-conversation-list-item")).slice(0, RECENT_CONVERSATION_TRAY_COUNT);
 
   const data = conversations.map((conversation, i) => {
     const name = conversation.querySelector(
@@ -45,18 +41,17 @@ export function recentThreadObserver() {
 
     const image = canvas?.toDataURL();
 
-    const snippet = conversation
-      .querySelector(
-        "a div.text-content div.snippet-text mws-conversation-snippet span"
-      )
-      ?.textContent?.trim();
+    const snippet = conversation.querySelector("a div.text-content div.snippet-text mws-conversation-snippet span")?.textContent?.trim();
 
     const recentMessage =
       snippet && snippet.length > RECENT_CONVERSATION_SNIPPET_LENGTH
         ? `${snippet.slice(0, RECENT_CONVERSATION_SNIPPET_LENGTH).trimEnd()}…`
         : snippet;
 
-    const focusFunction = () => void conversation.querySelector("a")?.click();
+    const focusFunction = (): undefined => {
+      const element = conversation.querySelector("a");
+      if (element) element.click();
+    };
     focusFunctions[i] = focusFunction;
 
     return { name, image, recentMessage, i };
@@ -66,13 +61,10 @@ export function recentThreadObserver() {
 
 export function createRecentThreadObserver(): MutationObserver {
   const observer = new MutationObserver(recentThreadObserver);
-  observer.observe(
-    document.body.querySelector("mws-conversations-list") as unknown as Element,
-    {
-      attributes: false,
-      subtree: true,
-      childList: true,
-    }
-  );
+  observer.observe(document.body.querySelector("mws-conversations-list") as unknown as Element, {
+    attributes: false,
+    subtree: true,
+    childList: true
+  });
   return observer;
 }

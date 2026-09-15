@@ -7,11 +7,7 @@ import { settingsMenu } from "./settingsMenu";
 import { viewMenuTemplate } from "./viewMenu";
 import { windowMenuTemplate } from "./windowMenu";
 
-const baseMenuTemplate: MenuItemConstructorOptions[] = [
-  editMenuTemplate,
-  viewMenuTemplate,
-  windowMenuTemplate,
-];
+const baseMenuTemplate: MenuItemConstructorOptions[] = [editMenuTemplate, viewMenuTemplate, windowMenuTemplate];
 
 if (IS_MAC) {
   baseMenuTemplate.unshift(appMenuTemplate);

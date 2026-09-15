@@ -128,7 +128,7 @@ contextBridge.exposeInMainWorld("interop", {
     const data = await ipcRenderer.invoke("get-icon");
     return `data:image/png;base64,${data}`;
   },
-  preload_init,
+  preload_init
 });
 webFrame.executeJavaScript(`
   window.addEventListener("load", async () => {
@@ -160,8 +160,8 @@ window.Notification = function (title, options) {
     window.interop.flash_main();
     return notification;
   } catch (e) {
-  console.error(e);
-  console.trace();
+    console.error(e);
+    console.trace();
   }
 };
 

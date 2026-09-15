@@ -12,20 +12,20 @@ export const appMenuTemplate: MenuItemConstructorOptions = {
     checkForUpdatesMenuItem,
     separator,
     {
-      role: "close",
+      role: "close"
     },
     settingsMenu,
     separator,
     {
       label: "Hide Android Messages Desktop",
       accelerator: "Command+H",
-      click: (): void => app.hide(),
+      click: (): void => app.hide()
     },
     separator,
     {
       label: "Quit",
       accelerator: "Command+Q",
-      click: (): void => app.quit(),
-    },
-  ],
+      click: (): void => app.quit()
+    }
+  ]
 };

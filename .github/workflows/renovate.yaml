@@ -14,7 +14,7 @@ permissions:
 jobs:
   renovate:
     runs-on: ubuntu-latest
-    environment: 
+    environment:
       name: renovate
       deployment: false
     steps:

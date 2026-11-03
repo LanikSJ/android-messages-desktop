@@ -1,17 +1,23 @@
 {
-  "extends": ["config:recommended"],
+  "extends": [
+    "config:recommended",
+    ":semanticCommitTypeAll(ci)"
+  ],
   "semanticCommits": "enabled",
-  "semanticCommitTypeAll": "ci",
-  "commitMessageLowerCase": true,
+  "commitMessageLowerCase": "auto",
   "prTitleEnabled": true,
   "prBody": "",
   "packageRules": [
     {
-      "matchDepTypes": ["dependencies"],
+      "matchDepTypes": [
+        "dependencies"
+      ],
       "semanticCommitType": "ci"
     },
     {
-      "matchDepTypes": ["devDependencies"],
+      "matchDepTypes": [
+        "devDependencies"
+      ],
       "semanticCommitType": "ci"
     }
   ]

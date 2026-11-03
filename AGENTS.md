@@ -46,7 +46,7 @@ android-messages-desktop is a desktop client for Android Messages built with Ele
 - Test changes locally with `npm run dev` or `electron .` before releasing
 - **DO NOT commit changes to git repositories directly**
 - **Always run markdownlint and fix all issues in markdown files before considering changes complete**
-- Run `npm test` (Vitest/Jest) to verify existing tests still pass
+- Run `npm run lint` to verify code style consistency
 
 #### Commit Message Convention
 

@@ -91,7 +91,8 @@ android-messages-desktop is a desktop client for Android Messages built with Ele
 ### Security Considerations
 
 - Never commit sensitive information (API keys, tokens, passwords)
-- Use environment variables for sensitive configuration
+- Use environment variables only for non-secret configuration.
+- Encrypt stored credentials with Electron `safeStorage` or another OS-backed secret store.
 - Validate and sanitize all inputs
 - Follow best practices for desktop app distribution
 

@@ -4,26 +4,20 @@
 
 android-messages-desktop is a desktop client for Android Messages built with Electron.
 
-## Commit Message Convention
-
-- Use the conventional commit format: `type(scope): description`
-- Common types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `ci`
-- Commit descriptions should be a bullet list of changes made
-- Example:
-
-  ```text
-  docs(AGENTS.md): update agent rules for cloudflare-worker project
-
-  - this file had the wrong data from a totally different repository
-  ```
-
 ## Code Standards and Practices
+
+### TypeScript & Electron Standards
+
+- Write clean, maintainable TypeScript following modern ES best practices
+- Use proper TypeScript types and interfaces for Electron main/renderer processes
+- Implement proper error handling and response status codes
+- Follow Electron best practices and API usage patterns
 
 ### Documentation Standards
 
-- Include clear usage examples and setup instructions
+- Include clear setup and deployment instructions
 - Document Electron-specific configurations and builds
-- Provide platform-specific installation instructions
+- Provide platform-specific installation instructions for macOS, Windows, Linux
 - Use markdown formatting consistently
 
 ### Markdown Compliance Requirements (MANDATORY)
@@ -43,7 +37,31 @@ android-messages-desktop is a desktop client for Android Messages built with Ele
 - Use `markdownlint --fix <filename>` for auto-fixable issues when available
 - Validate markdown files in CI/CD pipelines where applicable
 
-#### Commit Types
+### Development Guidelines
+
+#### When Making Changes
+
+- Preserve existing functionality unless explicitly asked to change it
+- Update documentation when modifying Electron behavior
+- Test changes locally with `npm run dev` or `electron .` before releasing
+- **DO NOT commit changes to git repositories directly**
+- **Always run markdownlint and fix all issues in markdown files before considering changes complete**
+- Run `npm test` (Vitest/Jest) to verify existing tests still pass
+
+#### Commit Message Convention
+
+- Use the conventional commit format: `type(scope): description`
+- Common types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `ci`
+- Commit descriptions should be a bullet list of changes made
+- Example:
+
+  ```text
+  docs(AGENTS.md): update agent rules for android-messages-desktop project
+
+  - this file had the wrong data from a totally different repository
+  ```
+
+##### Commit Types
 
 - **feat**: A new feature
 - **fix**: A bug fix
@@ -54,7 +72,7 @@ android-messages-desktop is a desktop client for Android Messages built with Ele
 - **test**: Adding or correcting tests
 - **chore**: Changes to build process or auxiliary tools
 
-#### Scope Guidelines
+##### Scope Guidelines
 
 - **action**: main action logic
 - **electron**: Electron app code
@@ -63,20 +81,19 @@ android-messages-desktop is a desktop client for Android Messages built with Ele
 - **ci**: CI/CD configuration
 - **deps**: dependency updates
 
-## Development Guidelines
-
-### When Making Changes
-
-- Preserve existing functionality unless explicitly asked to change it
-- Update documentation when adding new features
-- **Always run markdownlint and fix all issues in markdown files** before considering changes complete
-
 ### Electron App Standards
 
 - Follow Electron security best practices
 - Implement proper IPC communication patterns
 - Handle platform-specific functionality (macOS, Windows, Linux)
 - Implement auto-updates and version management
+
+### Security Considerations
+
+- Never commit sensitive information (API keys, tokens, passwords)
+- Use environment variables for sensitive configuration
+- Validate and sanitize all inputs
+- Follow best practices for desktop app distribution
 
 ## GitHub & Automation Standards
 
@@ -110,6 +127,7 @@ Before completing any change in `.github/`:
 - Project workflows must include automated testing stages.
 - Code quality checks must be integrated into CI/CD.
 - Release automation must be properly configured.
+- CI/CD should validate Electron app builds.
 
 ### Error Prevention
 

@@ -1,7 +1,19 @@
 {
   "$schema": "https://renovatebot.com",
-  "extends": ["config:best-practices", ":disableRateLimiting", ":disableDependencyDashboard"],
+  "extends": ["config:best-practices", ":semanticCommitTypeAll(ci)", ":disableRateLimiting", ":disableDependencyDashboard"],
+  "semanticCommits": "enabled",
+  "commitMessageLowerCase": "auto",
+  "prTitleEnabled": true,
+  "prBody": "",
   "packageRules": [
+    {
+      "matchDepTypes": ["dependencies"],
+      "semanticCommitType": "ci"
+    },
+    {
+      "matchDepTypes": ["devDependencies"],
+      "semanticCommitType": "ci"
+    },
     {
       "matchManagers": ["npm"],
       "matchUpdateTypes": ["minor", "patch"],

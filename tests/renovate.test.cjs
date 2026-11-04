@@ -24,8 +24,8 @@ test("semantic commit settings apply the ci preset and automatic lowercasing", (
   assert.equal(config.commitMessageLowerCase, "auto");
 });
 
-test("the PR body template and extra notes are empty", () => {
-  assert.equal(config.prBodyTemplate, "");
+test("the PR body template uses the Renovate default and extra notes are empty", () => {
+  assert.equal(Object.hasOwn(config, "prBodyTemplate"), false);
   assert.equal(config.prBodyNotes, "");
 });
 

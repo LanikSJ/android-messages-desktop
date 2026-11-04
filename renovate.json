@@ -3,7 +3,7 @@
   "extends": ["config:best-practices", ":semanticCommitTypeAll(ci)", ":disableRateLimiting", ":disableDependencyDashboard"],
   "semanticCommits": "enabled",
   "commitMessageLowerCase": "auto",
-  "prBodyNotes": "",
+  "prBodyNotes": [],
   "packageRules": [
     { "matchDepTypes": ["dependencies"], "semanticCommitType": "ci" },
     { "matchDepTypes": ["devDependencies"], "semanticCommitType": "ci" },

@@ -20,9 +20,6 @@ importers:
       glob:
         specifier: ^14.0.3
         version: 14.0.3
-      minimatch:
-        specifier: '>=11.0.1'
-        version: 11.0.4
       rxjs:
         specifier: ^7.8.2
         version: 7.8.2
@@ -69,6 +66,9 @@ importers:
       eslint-config-prettier:
         specifier: 10.1.8
         version: 10.1.8(eslint@10.11.0(jiti@2.7.0)(supports-color@8.1.1))
+      minimatch:
+        specifier: '>=11.0.1'
+        version: 11.0.4
       png2icons:
         specifier: 2.0.1
         version: 2.0.1

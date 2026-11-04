@@ -3,7 +3,6 @@
   "extends": ["config:best-practices", ":semanticCommitTypeAll(ci)", ":disableRateLimiting", ":disableDependencyDashboard"],
   "semanticCommits": "enabled",
   "commitMessageLowerCase": "auto",
-  "prTitle": true,
   "prBodyTemplate": "",
   "prBodyNotes": "",
   "packageRules": [

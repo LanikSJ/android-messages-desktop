@@ -1,5 +1,5 @@
 {
-  "": "https://renovatebot.com",
+  "$schema": "https://renovatebot.com",
   "extends": ["config:best-practices", ":semanticCommitTypeAll(ci)", ":disableRateLimiting", ":disableDependencyDashboard"],
   "semanticCommits": "enabled",
   "commitMessageLowerCase": "auto",

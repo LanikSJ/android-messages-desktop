@@ -74,8 +74,7 @@ jobs:
       - name: Install Linux Dependencies
         if: runner.os == 'Linux'
         run: >-
-          sudo apt-get update -y &&
-          sudo apt-get install --no-install-recommends -y libopenjp2-tools rpm libarchive-tools
+          sudo apt-get update -y && sudo apt-get install --no-install-recommends -y libopenjp2-tools rpm libarchive-tools
 
       - name: Install Dependencies
         run: |

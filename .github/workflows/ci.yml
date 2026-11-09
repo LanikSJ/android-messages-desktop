@@ -50,7 +50,7 @@ jobs:
 
     env:
       NODE_VERSION: 26
-      PNPM_VERSION: 11
+      PNPM_VERSION: 12
 
     steps:
       - name: Checkout
@@ -74,8 +74,7 @@ jobs:
       - name: Install Linux Dependencies
         if: runner.os == 'Linux'
         run: >-
-          sudo apt-get update -y &&
-          sudo apt-get install --no-install-recommends -y libopenjp2-tools rpm libarchive-tools
+          sudo apt-get update -y && sudo apt-get install --no-install-recommends -y libopenjp2-tools rpm libarchive-tools
 
       - name: Install Dependencies
         run: |

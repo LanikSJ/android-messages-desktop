@@ -883,8 +883,8 @@ packages:
     resolution: {integrity: sha512-Wdy2Igu8OcBpI2pZePZ5oWjPC38tmDVx5WKUXKwlLYkA0ozo85sLsLvkBbBn/sZaSCMFOGZJ14fvW9t5/d7kdA==}
     engines: {node: '>=8'}
 
-  ci-info@4.4.0:
-    resolution: {integrity: sha512-77PSwercCZU2Fc4sX94eF8k8Pxte6JAwL4/ICZLFjJLqegs7kCuAsqqj/70NQF6TvDpgFjkubQB2FW2ZZddvQg==}
+  ci-info@4.5.0:
+    resolution: {integrity: sha512-d1uM8k5UZEyPza1n/MG3ko8nKupKN0KJpFsipgPcgaCCvV+IqIfJ+NzTjetlLM+UcXZx3+cLrNr76+eAO7G1Mw==}
     engines: {node: '>=8'}
 
   cliui@8.0.1:
@@ -3042,7 +3042,7 @@ snapshots:
 
   ci-info@4.3.1: {}
 
-  ci-info@4.4.0: {}
+  ci-info@4.5.0: {}
 
   cliui@8.0.1:
     dependencies:
@@ -3177,7 +3177,7 @@ snapshots:
       builder-util: 26.15.3(supports-color@8.1.1)
       builder-util-runtime: 9.7.0(supports-color@8.1.1)
       chalk: 4.1.2
-      ci-info: 4.4.0
+      ci-info: 4.5.0
       dmg-builder: 26.15.3(electron-builder-squirrel-windows@26.15.3)(supports-color@8.1.1)
       fs-extra: 10.1.0
       lazy-val: 1.0.5

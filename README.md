@@ -68,3 +68,11 @@ The easiest way to get a developer environment up and running is using [devenv](
 ## 📄 License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+
+## ⚙️ Skills Automation
+
+This repository maintains agent skills via `skills-lock.json`. The GitHub Actions workflow automatically updates the skills monthly and creates a pull request.
+
+- **Workflow**: `.github/workflows/skills-update.yml`
+- **Schedule**: Monthly on the 1st at 03:00 UTC
+- **Manual run**: `npx skills update`

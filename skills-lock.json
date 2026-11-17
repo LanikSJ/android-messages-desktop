@@ -6,105 +6,105 @@
       "sourceType": "github",
       "skillPath": "plugins/testing-handbook-skills/skills/address-sanitizer/SKILL.md",
       "computedHash": "73407f088a6ac917a512d79af683fb6035fa3020f8b521f635f229fae4023821",
-      "ref": "main"
+      "commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     },
     "adjudicate-regression": {
       "source": "trailofbits/skills",
       "sourceType": "github",
       "skillPath": "plugins/regression-hunt/skills/adjudicate-regression/SKILL.md",
       "computedHash": "32a107b0a96f25cb45b0c3dc36dcf81a248a751c5aef260d11f4eaac4b269636",
-      "ref": "main"
+      "commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     },
     "aflpp": {
       "source": "trailofbits/skills",
       "sourceType": "github",
       "skillPath": "plugins/testing-handbook-skills/skills/aflpp/SKILL.md",
       "computedHash": "5d0cbc14b0d48d65dc2bee191f0151cb8ada0fbbc2f99879a25bbcd47ba672a0",
-      "ref": "main"
+      "commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     },
     "agentic-actions-auditor": {
       "source": "trailofbits/skills",
       "sourceType": "github",
       "skillPath": "plugins/agentic-actions-auditor/skills/agentic-actions-auditor/SKILL.md",
       "computedHash": "cc7b3d1a75443e02b5fbd5955adf64da393b4ed202ef7be152ac14a506b6ec95",
-      "ref": "main"
+      "commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     },
     "algorand-vulnerability-scanner": {
       "source": "trailofbits/skills",
       "sourceType": "github",
       "skillPath": "plugins/building-secure-contracts/skills/algorand-vulnerability-scanner/SKILL.md",
       "computedHash": "688598e063e64063f57e40678bc4d5b5b2345c65290a7e75c214ded967ed3395",
-      "ref": "main"
+      "commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     },
     "atheris": {
       "source": "trailofbits/skills",
       "sourceType": "github",
       "skillPath": "plugins/testing-handbook-skills/skills/atheris/SKILL.md",
       "computedHash": "934e2a11d624855ff8a196ae1313b4fa26730e23ab4242638f6dec10f1cd0a77",
-      "ref": "main"
+      "commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     },
     "audit-augmentation": {
       "source": "trailofbits/skills",
       "sourceType": "github",
       "skillPath": "plugins/trailmark/skills/audit-augmentation/SKILL.md",
       "computedHash": "a68dcf8cb57df065537085ad68f22646aff175d093a8f5ed80a6b1f5d13f86b4",
-      "ref": "main"
+      "commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     },
     "audit-context-building": {
       "source": "trailofbits/skills",
       "sourceType": "github",
       "skillPath": "plugins/audit-context-building/skills/audit-context-building/SKILL.md",
       "computedHash": "69aff40ecdbfcd0f03f231f9c68c9657512aa911752e68a83d2d912815cf47b6",
-      "ref": "main"
+      "commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     },
     "audit-prep-assistant": {
       "source": "trailofbits/skills",
       "sourceType": "github",
       "skillPath": "plugins/building-secure-contracts/skills/audit-prep-assistant/SKILL.md",
       "computedHash": "3a7dd12f1f6cf9dbb119fe8cc20fc60043b2c200f8046bac7d957f265f7f44ea",
-      "ref": "main"
+      "commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     },
     "autofix": {
       "source": "coderabbitai/skills",
       "sourceType": "github",
       "skillPath": "skills/autofix/SKILL.md",
-      "computedHash": "e573bf7857894f4980661c0635e768a3210866fa258fba3d00185827cfae748d",
-      "ref": "main"
+      "computedHash": "28e08a75a846e57f738a8d68bd2e351e7e5bebb5e1fd49d8915a1602a0eae7f2",
+      "commit": "45bd1ae2c471cd861b8b6903f7dcab7c57aa0e59"
     },
     "burpsuite-project-parser": {
       "source": "trailofbits/skills",
       "sourceType": "github",
       "skillPath": "plugins/burpsuite-project-parser/skills/burpsuite-project-parser/SKILL.md",
       "computedHash": "f7b944afd990803e0f339a7bdaae125eb9dda9f3b72af98f1c0a9d96b13bbdcf",
-      "ref": "main"
+      "commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     },
     "c-review": {
       "source": "trailofbits/skills",
       "sourceType": "github",
       "skillPath": "plugins/c-review/skills/c-review/SKILL.md",
       "computedHash": "3572a40ee406b79aa406e3a971873fca3f13a1dc23f65cc8e94049a574bd95a8",
-      "ref": "main"
+      "commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     },
     "cairo-vulnerability-scanner": {
       "source": "trailofbits/skills",
       "sourceType": "github",
       "skillPath": "plugins/building-secure-contracts/skills/cairo-vulnerability-scanner/SKILL.md",
       "computedHash": "b8dc1925743962cae69955a8ab5105fbb69116871ce0b27ca094c2f89da7f04b",
-      "ref": "main"
+      "commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     },
     "cargo-fuzz": {
       "source": "trailofbits/skills",
       "sourceType": "github",
       "skillPath": "plugins/testing-handbook-skills/skills/cargo-fuzz/SKILL.md",
       "computedHash": "aadcb6ae5be75f384a2c119e2d2cbb352d08c54af3a526b88d097ddbe2e613f4",
-      "ref": "main"
+      "commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     },
     "chrome-mcp-troubleshooting": {
       "source": "trailofbits/skills",
       "sourceType": "github",
       "skillPath": "plugins/chrome-mcp-troubleshooting/skills/chrome-mcp-troubleshooting/SKILL.md",
       "computedHash": "1f998a2a2854a33e2fd7123b51b87a889fa60ba30836316f295c791d33137362",
-      "ref": "main"
+      "commit": "149d7b21f4067765b82e67029730b42d228ef4b4"
     }
   }
 }
